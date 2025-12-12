@@ -1,3 +1,0 @@
-img/ filter=lfs diff=lfs merge=lfs -text
-amethyst/Images/ filter=lfs diff=lfs merge=lfs -text
-amethyst/Sounds/ filter=lfs diff=lfs merge=lfs -text
