@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi3vagktn2oho"]
+[gd_scene load_steps=16 format=3 uid="uid://bi3vagktn2oho"]
 
 [ext_resource type="Texture2D" uid="uid://dxl77ud0rf0fv" path="res://Images/Textures/fire_ground.png" id="1_1k76i"]
 [ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="2_43trh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="5_43trh"]
 [ext_resource type="Script" uid="uid://bxe3uvs0tctx8" path="res://scripts/Elements/water_crystal.gd" id="6_iprr0"]
 [ext_resource type="Texture2D" uid="uid://seooemyl4ud7" path="res://Images/Crystals/crystal_of_water.png" id="7_ep57y"]
+[ext_resource type="AudioStream" uid="uid://gebugqpqdj2j" path="res://Sounds/Music/fire intense.mp3" id="8_b6e14"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qsqu2"]
 
@@ -72,5 +73,9 @@ pixel_size = 0.05
 billboard = 1
 texture_filter = 0
 texture = ExtResource("7_ep57y")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_b6e14")
+autoplay = true
 
 [connection signal="body_entered" from="WaterCrystal" to="WaterCrystal" method="_on_body_entered"]
