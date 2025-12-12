@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://vy2sksmffbth"]
+
+[ext_resource type="Texture2D" uid="uid://c8dxa4octdsff" path="res://Images/Textures/earth_ground.png" id="1_518ql"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bydta"]
+size = Vector3(10, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlc5l"]
+albedo_texture = ExtResource("1_518ql")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_iip4h"]
+material = SubResource("StandardMaterial3D_wlc5l")
+size = Vector3(10, 2, 1)
+
+[node name="Wall" type="Node3D"]
+
+[node name="WallBody" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallBody"]
+shape = SubResource("BoxShape3D_bydta")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallBody"]
+mesh = SubResource("BoxMesh_iip4h")

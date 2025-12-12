@@ -1,0 +1,210 @@
+[gd_scene load_steps=16 format=3 uid="uid://dpogu4q3cgjua"]
+
+[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_6e5h5"]
+[ext_resource type="Texture2D" uid="uid://derlx8a27f5c1" path="res://Images/NPC's and player/water_boy.png" id="2_kigiu"]
+[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_kigiu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxeiw"]
+atlas = ExtResource("2_kigiu")
+region = Rect2(0, 2, 9, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds33u"]
+atlas = ExtResource("2_kigiu")
+region = Rect2(18, 9, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf7as"]
+atlas = ExtResource("2_kigiu")
+region = Rect2(11, 10, 5, 5)
+
+[sub_resource type="Animation" id="Animation_y0nod"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:z")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Eyes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_wps0x"]
+resource_name = "rock_turning"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.8, 0, 0, 0.5, 1, 0, 0, -0.8, 1, 1, 0.8, 0, 0, 1.5, 1, 0, 0, 0.8, 2, 1, -0.8, 0, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BigDroplet")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.9, 0, 0, 0.5, 1, 0, 0, 0.9, 1, 1, -0.9, 0, 0, 1.4932421, 1, 0, 0, -0.9, 1.9932421, 1, 0.9, 0, 0)
+
+[sub_resource type="Animation" id="Animation_6e5h5"]
+resource_name = "water_turning"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.8, 0, 0, 0.5, 1, 0, 0, -0.8, 1, 1, 0.8, 0, 0, 1.5, 1, 0, 0, 0.8)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BigDroplet")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.9, 0, 0, 0.5, 1, 0, 0, 0.9, 1, 1, -0.9, 0, 0, 1.4932421, 1, 0, 0, -0.9)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Eyes")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.05, 0.3, 0.2, 1, 1, 0, 0.35, 0.2)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n4a43"]
+_data = {
+&"RESET": SubResource("Animation_y0nod"),
+&"rock_turning": SubResource("Animation_wps0x"),
+&"water_turning": SubResource("Animation_6e5h5")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e5h5"]
+atlas = ExtResource("2_kigiu")
+region = Rect2(11, 2, 5, 4)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7p1mj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7p1mj"]
+radius = 5.608826
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4ra3w"]
+viewport_path = NodePath("HealthBar3D/SubViewport")
+
+[node name="WaterBoy" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Enemies"]]
+collision_layer = 3
+script = ExtResource("1_6e5h5")
+max_health = 100
+animation = NodePath("Head/AnimationPlayer")
+animation_name = "rock_turning"
+fireball_damage = 25
+fire_damage = 10
+waterblast_damage = -10
+waterblast_movement = 2.0
+blast_speed = 15.0
+rock = 10
+
+[node name="Head" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+pixel_size = 0.1
+billboard = 1
+texture_filter = 0
+texture = SubResource("AtlasTexture_wxeiw")
+
+[node name="SmallDroplet" type="Sprite3D" parent="Head"]
+pixel_size = 0.1
+billboard = 1
+texture_filter = 2
+texture = SubResource("AtlasTexture_ds33u")
+
+[node name="BigDroplet" type="Sprite3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6422776, 0, 0.47513586)
+pixel_size = 0.1
+billboard = 1
+texture_filter = 0
+texture = SubResource("AtlasTexture_xf7as")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
+root_node = NodePath("../SmallDroplet")
+libraries = {
+&"": SubResource("AnimationLibrary_n4a43")
+}
+
+[node name="Eyes" type="Sprite3D" parent="Head"]
+pixel_size = 0.1
+billboard = 1
+texture_filter = 0
+texture = SubResource("AtlasTexture_6e5h5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7p1mj")
+
+[node name="Follow_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Follow_area"]
+shape = SubResource("SphereShape3D_7p1mj")
+
+[node name="Damage_area" type="Area3D" parent="."]
+
+[node name="Damage_collission" type="CollisionShape3D" parent="Damage_area"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_md0e3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="HealthBar3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4781568, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_4ra3w")
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar3D"]
+size = Vector2i(75, 10)
+
+[node name="enemyhealthbar" parent="HealthBar3D/SubViewport" instance=ExtResource("3_kigiu")]
+offset_right = 75.0
+offset_bottom = 10.0
+
+[node name="Blast_Timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="Water_Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="body_entered" from="Follow_area" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Follow_area" to="." method="_on_area_3d_body_exited"]
+[connection signal="child_entered_tree" from="Follow_area/CollisionShape3D" to="." method="_on_collision_shape_3d_child_entered_tree"]
+[connection signal="body_entered" from="Damage_area" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="Damage_area" to="." method="_on_damage_area_body_exited"]
+[connection signal="timeout" from="Blast_Timer" to="." method="_on_blast_timer_timeout"]
+[connection signal="timeout" from="Water_Timer" to="." method="_on_water_timer_timeout"]

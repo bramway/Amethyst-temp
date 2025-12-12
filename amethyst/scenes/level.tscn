@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://c4skm1vgy3gq6"]
+
+[ext_resource type="Texture2D" uid="uid://dbfrc4s7lkh04" path="res://Images/Textures/void.png" id="1_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/player.tscn" id="2_w8frs"]
+[ext_resource type="Texture2D" uid="uid://c6l3wjiv823ga" path="res://Images/NPC's and player/wizard.png" id="4_2r41h"]
+[ext_resource type="PackedScene" uid="uid://bu0btelvd2py6" path="res://scenes/Enemies/enemy.tscn" id="4_mx8sn"]
+[ext_resource type="Texture2D" uid="uid://c4vehwl6b341n" path="res://Images/Spells/rock.png" id="5_ppgk2"]
+[ext_resource type="AudioStream" uid="uid://c4plskmabcty" path="res://Sounds/Music/Void.mp3" id="6_2r41h"]
+[ext_resource type="PackedScene" path="res://scenes/load_zone.tscn" id="7_klq6b"]
+[ext_resource type="Texture2D" uid="uid://mewr7aox743d" path="res://Images/Textures/water.png" id="8_b121j"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_km5ld"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c41q"]
+albedo_texture = ExtResource("1_mx8sn")
+uv1_scale = Vector3(256, 256, 256)
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2r41h"]
+material = SubResource("StandardMaterial3D_8c41q")
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8frs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8c41q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olg7q"]
+albedo_texture = ExtResource("8_b121j")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_olg7q"]
+material = SubResource("StandardMaterial3D_olg7q")
+
+[node name="Level" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.27452025, -0.52975905, 0.8024924, -0.29184067, 0.74928856, 0.59447116, -0.9162248, -0.3973943, 0.051089678, 1.9040678, 2.9701517, 0)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_km5ld")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2r41h")
+
+[node name="Label3D" type="Label3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.8670671, 0.06393552, 1.2377291)
+modulate = Color(0, 0, 0.38431373, 1)
+outline_modulate = Color(0.75686276, 0.42745098, 0, 1)
+text = "Welcome to our
+amazing game!!!!!!!111!1!
+
+WASD - move
+LMB - spell 1
+RMB - spell 2
+Space - spell 3
+Mouse - aim spell
+1 2 3 4 - switch element
+shift - sprint"
+font_size = 68
+outline_size = 6
+
+[node name="Player" parent="." instance=ExtResource("2_w8frs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="Enemy" parent="." instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1771274, -10.192005)
+
+[node name="WizardNPC" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.489814, 0.8685756, 0)
+pixel_size = 0.1
+billboard = 1
+texture_filter = 2
+texture = ExtResource("4_2r41h")
+
+[node name="DialogueArea" type="Area3D" parent="WizardNPC"]
+metadata/DialogueSprite = ExtResource("4_2r41h")
+metadata/Dialogue = ["1 - Hello! I am a wizard", "2 - This is my second dialogue", "3 - And this is my third"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WizardNPC/DialogueArea"]
+shape = SubResource("BoxShape3D_w8frs")
+
+[node name="Rock of wisdom" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.242158, 0.8685756, 0)
+pixel_size = 0.1
+billboard = 1
+texture_filter = 2
+texture = ExtResource("5_ppgk2")
+
+[node name="DialogueArea" type="Area3D" parent="Rock of wisdom"]
+metadata/DialogueSprite = ExtResource("5_ppgk2")
+metadata/Dialogue = "*The rock of wisdom has nothing to tell you today*"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock of wisdom/DialogueArea"]
+shape = SubResource("BoxShape3D_w8frs")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2r41h")
+volume_db = -40.0
+autoplay = true
+
+[node name="WaterZone" parent="." instance=ExtResource("7_klq6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.14102, 0.43688822, 0)
+goto_zone_resource = "res://scenes/ice_level.tscn"
+load_id = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterZone"]
+shape = SubResource("BoxShape3D_8c41q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WaterZone"]
+mesh = SubResource("BoxMesh_olg7q")

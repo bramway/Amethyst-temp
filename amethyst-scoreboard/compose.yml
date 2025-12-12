@@ -1,0 +1,37 @@
+services:
+  dev:
+    init: true
+    #container_name: dev
+    hostname: amethyst-scoreboard-dev
+    build:
+      dockerfile_inline: |
+        FROM ghcr.io/void-linux/void-glibc
+        RUN xbps-install -Syu xbps
+        RUN xbps-install -Syu make
+        RUN xbps-install -Syu cmake
+        RUN xbps-install -Syu gcc
+        RUN xbps-install -Syu glib
+        RUN xbps-install -Syu glibc
+        RUN xbps-install -Syu glib-devel
+        RUN xbps-install -Syu glibc-devel
+        #RUN xbps-install -Syu python3
+        #RUN xbps-install -Syu python3-devel
+        RUN xbps-install -Syu linux-headers
+        RUN xbps-install -Syu bash
+        RUN xbps-install -Syu util-linux
+        RUN xbps-install -Syu rustup
+        RUN echo | rustup-init && ln -sf ~/.profile ~/.bashrc
+        #RUN bash -l -c 'rustup target add wasm32-unknown-unknown'
+
+    volumes:
+      - /dev/null:/play/compose.yml:ro
+      - .:/play
+      #- /lib/modules:/lib/modules:ro
+
+    ports:
+      - "3030:3030"
+
+    working_dir: /play
+    stdin_open: true
+    tty: true
+    command: sleep 99999999
