@@ -6,12 +6,11 @@ var seen = false
 var enemies: Array = []
 var direction: Vector2
 @export var FIRE_DESPAWN_TIMER: float = 5
-const summon_source = preload("res://scripts/Spells/summon_source.gd")
-signal deque
 
 func _ready():
 	fire_tick.timeout.connect(hit)
 	despawn_timer.start(FIRE_DESPAWN_TIMER)
+
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Enemies"):
@@ -31,12 +30,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func hit():
 	for enemy in enemies:	
-		enemy.take_damage('fire', direction)	
-		print('hit')
-
+		enemy.take_damage('fire', direction)
 
 
 func _on_despawn_timer_timeout():
 	queue_free()
-	emit_signal('deque')
-	

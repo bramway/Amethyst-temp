@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cudnu08pthao2"]
+[gd_scene load_steps=17 format=3 uid="uid://cudnu08pthao2"]
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_yyctt"]
 [ext_resource type="Texture2D" uid="uid://dc2x7j322ypbj" path="res://Images/NPC's and player/water_man.png" id="2_yyctt"]
-[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="4_cg5u3"]
+[ext_resource type="PackedScene" uid="uid://ccfsuyr4ys3l8" path="res://scenes/Enemies/enemyhealthbar.tscn" id="4_cg5u3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yyctt"]
 atlas = ExtResource("2_yyctt")
@@ -168,22 +168,12 @@ radius = 5.608826
 [sub_resource type="ViewportTexture" id="ViewportTexture_4ra3w"]
 viewport_path = NodePath("HealthBar3D/SubViewport")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_dbvyl"]
-radius = 12.993122
-
 [node name="WaterMan" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Enemies"]]
 collision_layer = 3
 script = ExtResource("1_yyctt")
-max_health = 250
 animation = NodePath("Body/AnimationPlayer")
 animation_name = "rock_idle"
 stationary = true
-fireball_damage = 25
-fire_damage = 10
-waterblast_damage = -10
-waterblast_movement = 2.0
-blast_speed = 15.0
-rock = 10
 
 [node name="Body" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
@@ -239,19 +229,9 @@ wait_time = 0.25
 [node name="Water_Timer" type="Timer" parent="."]
 wait_time = 2.5
 
-[node name="Range_area" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Range_area"]
-shape = SubResource("SphereShape3D_dbvyl")
-
-[node name="RangeTimer" type="Timer" parent="."]
-
 [connection signal="body_entered" from="Follow_area" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Follow_area" to="." method="_on_area_3d_body_exited"]
 [connection signal="child_entered_tree" from="Follow_area/CollisionShape3D" to="." method="_on_collision_shape_3d_child_entered_tree"]
 [connection signal="body_entered" from="Damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="Damage_area" to="." method="_on_damage_area_body_exited"]
 [connection signal="timeout" from="Blast_Timer" to="." method="_on_blast_timer_timeout"]
-[connection signal="timeout" from="Water_Timer" to="." method="_on_water_timer_timeout"]
-[connection signal="body_entered" from="Range_area" to="." method="_on_range_area_body_entered"]
-[connection signal="body_exited" from="Range_area" to="." method="_on_range_area_body_exited"]

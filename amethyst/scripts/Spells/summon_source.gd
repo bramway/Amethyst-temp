@@ -7,16 +7,12 @@ const water_blast_scene = preload("res://scenes/Spells/water_blast.tscn")
 const water_scene = preload("res://scenes/Spells/water.tscn")
 const wind_blast_scene = preload("res://scenes/Spells/wind_blast.tscn")
 const fire_scene = preload("res://scenes/Spells/fire.tscn")
-const queue_class = preload("res://scripts/queue_class.gd")
 var spell_direction: Vector2
 var spell_position: Vector2
-var FireScene = fire_scene.instantiate()
 
 
-
-
-@export var ROCK_AMOUNT = 6
-@export var WATER_AMOUNT = 20
+@export var ROCK_AMOUNT = 12
+@export var WATER_AMOUNT = 8
 @export var SPAWN_TIME = 0.01
 @export var RANDOMNESS = 0.01
 @export var CASTING_DISTANCE = 0.5
@@ -28,9 +24,6 @@ var FireScene = fire_scene.instantiate()
 var summon_list = []
 var spell_queue: Array = []
 var ready_to_cast: bool = true
-var fire_count = 0
-var fire_queue = queue_class.new(5)
-var placed = true
 
 @onready var root_node = $"../.."
 @onready var player = $".."
@@ -45,7 +38,6 @@ var placed = true
 #      0.0  cos(hoek) sin(hoek)
 #      0.0 -sin(hoek) cos(hoek)
 
-	
 func _process(_delta):
 	var element = ElementManager.Element
 	if Input.is_action_just_pressed("Fire") and ElementManager.Element.FIRE in ElementManager.unlocked_elements:
@@ -65,7 +57,7 @@ func _process(_delta):
 			ElementManager.Element.FIRE:
 				cast_spell(summon_in_direction, [fireball_scene, spell_direction])
 			ElementManager.Element.EARTH:
-				cast_spell(summon_in_direction, [rock_scene, spell_direction])
+				pass
 			ElementManager.Element.WATER:
 				cast_spell(summon_in_direction, [water_blast_scene, spell_direction])
 			ElementManager.Element.WIND:
@@ -74,16 +66,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Spell_2"):
 		match ElementManager.player_selected_element:
 			ElementManager.Element.FIRE:
-				var fire = cast_spell(summon_at_position, [fire_scene, spell_position])
-				if fire_queue.is_full():
-					var latest = fire_queue.dequeue()
-					if typeof(latest) == 24:
-						latest.queue_free()
-					
-				fire_queue.enqueue(fire)
-				
+				cast_spell(summon_at_position, [fire_scene, spell_position])
 			ElementManager.Element.EARTH:
-				cast_spell(summon_at_position, [rock_scene, spell_position])
+				pass
 			ElementManager.Element.WATER:
 				pass
 			ElementManager.Element.WIND:
@@ -94,14 +79,12 @@ func _process(_delta):
 			ElementManager.Element.FIRE:
 				pass
 			ElementManager.Element.EARTH:
-				pass
+				cast_spell(summon_rock, [])
 			ElementManager.Element.WATER:
 				cast_spell(summon_water, [])
 			ElementManager.Element.WIND:
 				pass
-func _deq():
-	if not fire_queue.is_empty():
-		fire_queue.dequeue()
+
 
 func get_spell_direction() -> void:
 	"""Sets the spell_position and spell_direction variables."""
@@ -124,18 +107,14 @@ func summon_in_direction(scene: Object, direction: Vector2) -> void:
 	root_node.add_child(object)
 
 
-func cast_spell(spell: Callable, args: Array):
+func cast_spell(spell: Callable, args: Array) -> void:
 	if ready_to_cast:
-		#spell.callv(args)
+		spell.callv(args)
 		ready_to_cast = false
 		spell_delay_timer.start(SPELL_DELAY)
-		placed = true
-		return spell.callv(args)
 	elif spell_delay_timer.time_left < SPELL_INPUT_BUFFERING_TIME:
 		spell_queue = [spell, args]
-		placed = false
-		
-		
+
 
 func dequeue_spell():
 	if len(spell_queue) > 0:
@@ -151,27 +130,19 @@ func _on_spell_delay_timer_timeout():
 		dequeue_spell()
 
 
-func summon_at_position(scene: Object, pos: Vector2):
+func summon_at_position(scene: Object, pos: Vector2) -> void:
 	var object = scene.instantiate()
 	object.position = global_position + Vector3(pos.y, 0, pos.x)
-	var obj_pos = object.position
-	
-	if object.name == 'Fire': 
-		root_node.add_child(object)
-		object.connect('deque', Callable(self, "_deq"))
-	if object.name == 'Rock_body':
-		print('hi')
-		summon_rock(obj_pos)
-	return object
+	root_node.add_child(object)
 
 
-func summon_rock(obj_pos):
+func summon_rock():
 	'''summons rock in a circle by making a list of instances, then spawning them on summon timer'''
 	var circle = make_circle(ROCK_AMOUNT, 4)
 	for i in range(len(circle)):
 		var rock = rock_scene.instantiate()
 
-		rock.position = obj_pos + (circle[i] * 1.5)
+		rock.position = global_position + (circle[i] * 1.5)
 		summon_list.append(rock)
 	summon_timer.start(SPAWN_TIME)
 
@@ -180,7 +151,7 @@ func summon_water():
 	var circle = make_circle(WATER_AMOUNT, 4)
 	for i in range(len(circle)):
 		var water = water_scene.instantiate()
-		water.position = global_position + (circle[i] * 2)
+		water.position = global_position + (circle[i] * 1.2)
 		summon_list.append(water)
 	summon_timer.start(SPAWN_TIME)
 

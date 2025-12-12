@@ -8,14 +8,21 @@ The theme we have selected is “The forgotten elements”, we will interpret th
 
 # Game Idea in about 100 words
 
-We will make a top-down game (maybe 3D with 2D sprites as models) where the goal is linearly going through a world with an emphasis on combat, gaining elemental powers along the way. There is a short plot about gathering these elements and destroying evil. The player will use a magic system to combat enemies with elemental weaknesses, and dynamically using different spells is the main gameplay loop and key part of the game. Enemies have elemental weaknesses that make them resistant or weak to certain types of magic.
+We will make a 3D game where exploration and combat are centrally tied together with a short but good plot. The player will use elemental magic to face enemies and solve puzzles. The enemies will have elemental weaknesses and strength, so using different spells is key. Other elements and spells are unlocked with bossfights, these are also necessary for unlocking certain areas of the game (metroid-vania style). The final element needs to be destroyed, as it is undoubtedly evil.
 
-| Name | Email | Main roles |
+**Roles to divide:**  
+**Lead designer, lead artist, lead programmer, worldbuilding, gameplay & testing, production**
+
+| Name | Email | Necessary roles |
 | :---- | :---- | :---- |
-| **Joris** | jjjheijnen@student.tudelft.nl | World builder  |
-| **Dennis** | d.visser-5@student.tudelft.nl | Lead designer |
-| **Bram** | bmovanwayenbur@student.tudelft.nl | Lead artist, production |
-| **Nikita** | n.a.soshnin@student.tudelft.nl | Lead programmer |
+| **Joris** | [jjjheijnen@student.tudelft.nl](mailto:jjjheijnen@student.tudelft.nl) | World builder |
+| **Dennis** | [d.visser-5@student.tudelft.nl](mailto:d.visser-5@student.tudelft.nl) | Lead designer |
+| **Bram** | [bmovanwayenbur@student.tudelft.nl](mailto:bmovanwayenbur@student.tudelft.nl) | Lead artist, production |
+| **Nikita** | [n.a.soshnin@student.tudelft.nl](mailto:n.a.soshnin@student.tudelft.nl) | Lead programmer |
+
+# 
+
+# Extension 1:
 
 # Features to implement
 
@@ -34,8 +41,8 @@ We will make a top-down game (maybe 3D with 2D sprites as models) where the goal
 | Feature | Level | Explanation |
 | :---- | :---- | :---- |
 | Advanced AI | **★★** | The monsters in our game will need to choose between different decisions |
-| Pathfinding | **★★** | We will implement a simple pathfinding algorithm for our enemies, which switches from goals based on health,  |
-| Intelligently control groups of agent | **★★** | To have multiple monsters on screen and not have them merge into each other, they will have to keep distance with some kind of algorithm. |
+| Pathfinding | **★★** | We will implement a simple pathfinding algorithm for our enemies, which switches from goals based on health, |
+| Intelligently control groups of agent | **★★** | To have multiple monsters on screen and not have them merge into eachother, they will have to keep distance with some kind of algorithm. |
 
 **Web-based**
 
@@ -44,7 +51,7 @@ We will make a top-down game (maybe 3D with 2D sprites as models) where the goal
 | Create remote server for storing data | **★★★** | We will have a remote server to store high scores and maybe save data. |
 | Save relevant information from your game during play | **★** | We will have save states in our game as it is a linear experience. |
 | Collect and show highscores (remotely) | **★** | We can have a speedrun mode in the game, and have a scoreboard that displays top times. |
-| Level heatmap, showing where certain events happen most frequently |  ★★  | We can track where in the map players die to see if some areas are too difficult or too easy. We can also keep track of general position of players so we can see if there are some areas that players don’t manage to find or maybe long paths that players take that might make sense to replace with portals/fast travel |
+| Level heatmap, showing where certain events happen most frequently | ★★ | We can track where in the map players die to see if some areas are too difficult or too easy. We can also keep track of general position of players so we can see if there are some areas that players don’t manage to find or maybe long paths that players take that might make sense to replace with portals/fast travel |
 
 **Programming**
 
@@ -53,41 +60,11 @@ We will make a top-down game (maybe 3D with 2D sprites as models) where the goal
 | Dynamic environment (hazards) | ★★ | Some areas are guarded by stronger and more enemies then others |
 | FPS independent | **★** | This feels like a necessity for good game design |
 | Use physics materials to create surfaces that respond differently | **★** | We can have different environments in the game, for example icy areas where the player and enemies slide around, or desert areas where you move slower |
-| Emulate real-world physical effects (e.g. fire spread, fluid draining, gas  spread, water state changes)  | **★★** | We can have some interaction between the elemental spells and environment, for example fire spreads in forest-like environments or melts icy obstacles |
+| Emulate real-world physical effects (e.g. fire spread, fluid draining, gas  spread, water state changes) | **★★** | We can have some interaction between the elemental spells and environment, for example fire spreads in forest-like environments or melts icy obstacles |
 | Basic menus (including main menu) | ★★ | We want to have a REALLY FANCY main menu |
-| High scores  | ★ | We will have a speedrun system, so we will also add a scoreboard UI for it |
+| High scores | ★ | We will have a speedrun system, so we will also add a scoreboard UI for it |
 | Self-made UI animations | ★ | We feels like this is worth for adding to UX. |
 | Dynamic music | ★★ | We want music to change depending on the area you are in, with different instruments in different environments. |
-
-# MoSCoW
-
-| Must haves:  The player must be able to attack enemies using magic. The UI must show a health stat and the player must die when the health is zero. The enemies must have a health bar and die at zero health The enemies represent the different types of elements and will occur in the correct level. The player must be able to move in all direction There must be different levels, each level represents a different element. For example the fire level will be a red themed room. There must be a way to travel between these levels There must be at least two different kinds of magic that the player can switch between and use to defeat different types of enemies There must be a dialogue screen with character sprites which displays text on the screen when dialog is possible and prompted. When player health drops to zero, there must be a game over screen and a place where the game gets reloaded and the player spawns. The enemies have elemental weaknesses, for example a water attack does more damage to a fire enemy. |
-| :---- |
-| **Should haves:**  5 types of magic Modularity of scenes (scene per object) Good magic UI A dedicated particle system for magic More spells per element Sound effects Health and magic upgrades Main Menu UI Settings |
-| **Could haves:** Web-based scoreboard Controls for controller Save states Music Post-processing filter Backtracking for more non-linear gameplay Map Tutorial |
-| **Won’t haves:** A long story Visual storytelling Complex multiplayer |
-
-# Rough schedule
-
-| Week | Course Deadlines | Own schedule |
-| :---- | :---- | :---- |
-| Week 3 (24 nov) |  | Make fundamentals for magic system: Add fire, earth enemy interaction, movement, think about bosses ✅Add pause menu ✅Add death screen |
-| Week 4 (1 dec) | 5 dec: CPD extension 2 Peer feedback (buddycheck) | make scoreboard server-side component Finalise art vision, start putting more finalized sprites into game writing part of the story, add dialogue Save states |
-| Week 5 (8 dec) | 12 dec: mini blog post | make scoreboard client-side component Make a lot of sprites Make basic sound effects Add main menu |
-| Week 6 (15 dec) | 15 dec: Early access game | Basic enemy AI Elaborate on magic system, add water and air Add music\! |
-| Christmas break |  | playtesting |
-| Week 7 (5 jan) | 9 jan: Beta game 10 jan: Beta blog post | Elemental enemy AI Finish scoreboard integration Keep adding juice |
-| Week 8 (12 jan) | Peer feedback (buddycheck) | Revise sprites final time Rebalance game based on playtesting Bug fixes\! So many bug fixes |
-| Week 9 (19 jan) | 23 jan: **RELEASE** 24 jan: final blog post |  |
-| Week 10 (26 jan) | 30 jan: Final presentation |  |
-
-# Feature highlights
-
-**Magic system**  
-The main element in our game will be its magic system, used mainly for combat but also for world traversal. It will include 2 to 5 elements (water, earth, etc.), depending on how far we get, which can be used by the player to fight, move and defend itself from enemies.
-
-**Combat progression**  
-As you get further along in the game, you will have more abilities unlocked for you, and enemies will be tougher but you will have more tools to beat them, with juice to make it a good gameplay experience.
 
 # Extension 2
 

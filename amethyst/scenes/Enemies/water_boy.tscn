@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_6e5h5"]
 [ext_resource type="Texture2D" uid="uid://derlx8a27f5c1" path="res://Images/NPC's and player/water_boy.png" id="2_kigiu"]
-[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_kigiu"]
+[ext_resource type="PackedScene" uid="uid://ccfsuyr4ys3l8" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_kigiu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wxeiw"]
 atlas = ExtResource("2_kigiu")
@@ -124,15 +124,8 @@ viewport_path = NodePath("HealthBar3D/SubViewport")
 [node name="WaterBoy" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Enemies"]]
 collision_layer = 3
 script = ExtResource("1_6e5h5")
-max_health = 100
 animation = NodePath("Head/AnimationPlayer")
 animation_name = "rock_turning"
-fireball_damage = 25
-fire_damage = 10
-waterblast_damage = -10
-waterblast_movement = 2.0
-blast_speed = 15.0
-rock = 10
 
 [node name="Head" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -207,4 +200,3 @@ wait_time = 2.5
 [connection signal="body_entered" from="Damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="Damage_area" to="." method="_on_damage_area_body_exited"]
 [connection signal="timeout" from="Blast_Timer" to="." method="_on_blast_timer_timeout"]
-[connection signal="timeout" from="Water_Timer" to="." method="_on_water_timer_timeout"]

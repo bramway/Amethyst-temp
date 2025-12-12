@@ -3,12 +3,6 @@ extends Control
 @onready var main_menu_resource = load("res://scenes/main_menu.tscn")
 @onready var root = get_tree().get_root()
 
-func _ready():
-	get_tree().paused = true
-
-func _exit_tree():
-	get_tree().paused = false
-
 func _on_start_button_pressed():
 	get_tree().paused = not get_tree().paused
 	queue_free()

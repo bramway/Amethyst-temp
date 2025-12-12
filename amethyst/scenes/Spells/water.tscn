@@ -41,5 +41,3 @@ amount = 15
 lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_s3811")
 draw_pass_1 = SubResource("QuadMesh_p1n2c")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

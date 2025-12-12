@@ -6,9 +6,9 @@ var just_died = false
 
 
 func _input(_event):
-	'''This paused all processes that are not in subviewportcontainer, so make
-	sure your process is pausable when it should be, and not when it should not
-	be. Level and DialogueScreen are set to pausable.'''
+	'''This paused all processes that are not in subviewportcontainer, so make sure
+	your process is pausable when it should be, and not when it should not be. Level and
+	DialogueScreen are set to pausable.'''
 	if Input.is_action_just_pressed("Pause"):
 		
 		if get_tree().paused:
@@ -16,6 +16,8 @@ func _input(_event):
 		else:
 			var pause_menu = pause_menu_resource.instantiate()
 			add_child(pause_menu)
+			
+		get_tree().paused = not get_tree().paused
 
 func _process(_delta):
 	if Global.player_health <= 0 and just_died == false:

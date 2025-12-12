@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bu0btelvd2py6"]
 
-[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_7p1mj"]
-[ext_resource type="Texture2D" uid="uid://cm1d1ngaercti" path="res://Images/NPC's and player/enemy_sprite.png" id="2_md0e3"]
-[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="4_5uy6h"]
+[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_48hpc"]
+[ext_resource type="Texture2D" uid="uid://cm1d1ngaercti" path="res://Images/NPC's and player/enemy_sprite.png" id="2_8swre"]
+[ext_resource type="PackedScene" uid="uid://ccfsuyr4ys3l8" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_0th86"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7p1mj"]
 
@@ -16,20 +16,13 @@ viewport_path = NodePath("HealthBar3D/SubViewport")
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 3
-script = ExtResource("1_7p1mj")
-max_health = 100
-fireball_damage = 5
-fire_damage = 5
-waterblast_movement = 0.5
-blast_speed = 15.0
-rock = 50
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 pixel_size = 0.1
 billboard = 1
 texture_filter = 0
-texture = ExtResource("2_md0e3")
+texture = ExtResource("2_8swre")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_7p1mj")
@@ -56,7 +49,7 @@ texture = SubResource("ViewportTexture_4ra3w")
 [node name="SubViewport" type="SubViewport" parent="HealthBar3D"]
 size = Vector2i(75, 10)
 
-[node name="enemyhealthbar" parent="HealthBar3D/SubViewport" instance=ExtResource("4_5uy6h")]
+[node name="enemyhealthbar" parent="HealthBar3D/SubViewport" instance=ExtResource("3_0th86")]
 offset_right = 75.0
 offset_bottom = 10.0
 
@@ -64,6 +57,7 @@ offset_bottom = 10.0
 wait_time = 0.25
 
 [node name="Water_Timer" type="Timer" parent="."]
+wait_time = 2.5
 
 [connection signal="body_entered" from="Follow_area" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Follow_area" to="." method="_on_area_3d_body_exited"]
