@@ -1,0 +1,84 @@
+[gd_scene load_steps=17 format=3 uid="uid://cippsg45sdm17"]
+
+[ext_resource type="Texture2D" uid="uid://c8dxa4octdsff" path="res://Images/Textures/earth_ground.png" id="1_ch12s"]
+[ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="2_4bqr0"]
+[ext_resource type="Texture2D" uid="uid://dxl77ud0rf0fv" path="res://Images/Textures/fire_ground.png" id="3_ch12s"]
+[ext_resource type="PackedScene" uid="uid://b0fypo1x2vsil" path="res://scenes/Objects/spawn_location.tscn" id="4_h1r45"]
+[ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="5_5rvs6"]
+[ext_resource type="PackedScene" uid="uid://bb8tabn5mt2m0" path="res://scenes/Enemies/rock_boy.tscn" id="6_4bqr0"]
+[ext_resource type="PackedScene" uid="uid://btw32gt2iskv7" path="res://scenes/Enemies/rock_man.tscn" id="7_10lb3"]
+[ext_resource type="Script" uid="uid://j6h04rbjxgml" path="res://scripts/Elements/earth_crystal.gd" id="8_ixsxi"]
+[ext_resource type="Texture2D" uid="uid://bnxn6sgyyx0ek" path="res://Images/Crystals/crystal_of_earth.png" id="9_ddndb"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ax46o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b121j"]
+albedo_texture = ExtResource("1_ch12s")
+uv1_scale = Vector3(256, 256, 256)
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w64jo"]
+material = SubResource("StandardMaterial3D_b121j")
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cfv58"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsqu2"]
+albedo_texture = ExtResource("3_ch12s")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ut1q7"]
+material = SubResource("StandardMaterial3D_qsqu2")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hipcr"]
+
+[node name="EarthLevel" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.27452025, -0.52975905, 0.8024924, -0.29184067, 0.74928856, 0.59447116, -0.9162248, -0.3973943, 0.051089678, 1.9040678, 2.9701517, 0)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_ax46o")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_w64jo")
+
+[node name="FireZone" parent="." instance=ExtResource("2_4bqr0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.14102, 0.43688822, 0)
+goto_zone_resource = "res://scenes/Levels/fire_level.tscn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireZone"]
+shape = SubResource("BoxShape3D_cfv58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FireZone"]
+mesh = SubResource("BoxMesh_ut1q7")
+
+[node name="SpawnLocation" parent="." instance=ExtResource("4_h1r45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08595562, 0.43688822, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_5rvs6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.766, 0.9, 0)
+
+[node name="RockEnemy" parent="." instance=ExtResource("6_4bqr0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
+
+[node name="BigRockEnemy" parent="." instance=ExtResource("7_10lb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10456, 1, -8.039329)
+
+[node name="EarthCrystal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.070945, 0.70360184, -7.5345154)
+script = ExtResource("8_ixsxi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EarthCrystal"]
+shape = SubResource("CapsuleShape3D_hipcr")
+
+[node name="Sprite3D" type="Sprite3D" parent="EarthCrystal"]
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_ddndb")
+
+[connection signal="body_entered" from="EarthCrystal" to="EarthCrystal" method="_on_body_entered"]

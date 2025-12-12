@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgv1t3guygty6"]
+
+[ext_resource type="Script" uid="uid://bnb4g1bis5a8a" path="res://scripts/Levels/load_zone.gd" id="1_gajtb"]
+
+[node name="LoadZone" type="Area3D"]
+script = ExtResource("1_gajtb")
+goto_zone_resource = "res://scenes/level.tscn"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

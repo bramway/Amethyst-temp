@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt7fvaatiw1l4"]
+
+[ext_resource type="Texture2D" uid="uid://bfqq2ukoy62nk" path="res://Images/Textures/grass.png" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://b0o1omdwmqau3" path="res://scripts/Menus/button_manager.gd" id="1_l6cm7"]
+[ext_resource type="Theme" uid="uid://bpcfuixup341c" path="res://themes/main_theme.tres" id="3_bqqt6"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_bqqt6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(582, 582)
+scale = Vector2(73.75, 73.75)
+texture = ExtResource("1_ekxnf")
+
+[node name="ButtonManager" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -68.0
+offset_right = 48.5
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="MarginContainerStart" type="MarginContainer" parent="ButtonManager"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="ButtonManager/MarginContainerStart"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme = ExtResource("3_bqqt6")
+text = "Start Game"
+
+[node name="MarginContainerOptions" type="MarginContainer" parent="ButtonManager"]
+layout_mode = 2
+
+[node name="OptionsButton" type="Button" parent="ButtonManager/MarginContainerOptions"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Options"
+
+[node name="MarginContainerScoreboard" type="MarginContainer" parent="ButtonManager"]
+layout_mode = 2
+
+[node name="ScoreboardButton" type="Button" parent="ButtonManager/MarginContainerScoreboard"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Scoreboard"
+
+[node name="MarginContainerQuit" type="MarginContainer" parent="ButtonManager"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="ButtonManager/MarginContainerQuit"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="ButtonManager/MarginContainerStart/StartButton" to="ButtonManager" method="_on_start_button_pressed"]
+[connection signal="pressed" from="ButtonManager/MarginContainerOptions/OptionsButton" to="ButtonManager" method="_on_options_button_pressed"]
+[connection signal="pressed" from="ButtonManager/MarginContainerScoreboard/ScoreboardButton" to="ButtonManager" method="_on_scoreboard_button_pressed"]
+[connection signal="pressed" from="ButtonManager/MarginContainerQuit/QuitButton" to="ButtonManager" method="_on_quit_button_pressed"]

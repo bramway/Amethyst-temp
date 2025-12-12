@@ -1,0 +1,74 @@
+[gd_scene load_steps=14 format=3 uid="uid://bh4005nhlgw3d"]
+
+[ext_resource type="Texture2D" uid="uid://mewr7aox743d" path="res://Images/Textures/water.png" id="1_cbsec"]
+[ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="2_fpap8"]
+[ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="3_fpap8"]
+[ext_resource type="Texture2D" uid="uid://c8dxa4octdsff" path="res://Images/Textures/earth_ground.png" id="4_cbsec"]
+[ext_resource type="PackedScene" uid="uid://b0fypo1x2vsil" path="res://scenes/Objects/spawn_location.tscn" id="4_o7d81"]
+[ext_resource type="PackedScene" uid="uid://dpogu4q3cgjua" path="res://scenes/Enemies/water_boy.tscn" id="5_gwdgj"]
+[ext_resource type="PackedScene" uid="uid://cudnu08pthao2" path="res://scenes/Enemies/water_man.tscn" id="6_q3y3b"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jpqwx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
+albedo_texture = ExtResource("1_cbsec")
+uv1_scale = Vector3(256, 256, 256)
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hejm7"]
+material = SubResource("StandardMaterial3D_ppgk2")
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o7d81"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3y3b"]
+albedo_texture = ExtResource("4_cbsec")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_cbsec"]
+material = SubResource("StandardMaterial3D_q3y3b")
+
+[node name="IceLevel" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_jpqwx")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_hejm7")
+
+[node name="Player" parent="." instance=ExtResource("2_fpap8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.27452025, -0.52975905, 0.80249244, -0.29184067, 0.74928856, 0.5944711, -0.9162248, -0.39739424, 0.05108963, 1.9040678, 3.7701516, 0)
+
+[node name="EarthZone" parent="." instance=ExtResource("3_fpap8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.57391405, 0.08369923)
+goto_zone_resource = "res://scenes/Levels/earth_level.tscn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EarthZone"]
+shape = SubResource("BoxShape3D_o7d81")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EarthZone"]
+mesh = SubResource("BoxMesh_cbsec")
+
+[node name="SpawnLocation" parent="." instance=ExtResource("4_o7d81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.8, -2.6630998)
+
+[node name="WaterMan" parent="." instance=ExtResource("6_q3y3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5733838, 0.57391405, -4.9671483)
+animation_name = "Gloopyman"
+
+[node name="WaterBoy" parent="." instance=ExtResource("5_gwdgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.426616, 0.57391405, -4.9671483)
+animation_name = "water_turning"

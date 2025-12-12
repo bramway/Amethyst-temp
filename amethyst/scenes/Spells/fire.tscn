@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://yrv5wxbqm1m4"]
+
+[ext_resource type="Texture2D" uid="uid://by68qecynrwpp" path="res://Images/Spells/fire.png" id="1_52nqi"]
+[ext_resource type="Script" uid="uid://dyir87mwnnvo" path="res://scripts/Spells/fire.gd" id="1_xqmqg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g5mbl"]
+
+[node name="Fire" type="Node3D"]
+script = ExtResource("1_xqmqg")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D"]
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_52nqi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_g5mbl")
+
+[node name="FireTickTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="DespawnTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

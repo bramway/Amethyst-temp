@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnqyc8ec4s0vy"]
+
+[ext_resource type="Script" uid="uid://be7t2xb1ovrp7" path="res://scripts/Spells/rock.gd" id="1_jw3tu"]
+[ext_resource type="Texture2D" uid="uid://c4vehwl6b341n" path="res://Images/Spells/rock.png" id="2_y25om"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_677d1"]
+
+[sub_resource type="Animation" id="Animation_ik6fu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:gravity_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_mek2u"]
+resource_name = "rock_animation"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.1666667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [Vector3(0, 20, 0)],
+"method": &"apply_central_force"
+}, {
+"args": [],
+"method": &"despawn"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:gravity_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0, 0),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_872ht"]
+_data = {
+&"RESET": SubResource("Animation_ik6fu"),
+&"rock_animation": SubResource("Animation_mek2u")
+}
+
+[node name="Rock_body" type="RigidBody3D"]
+script = ExtResource("1_jw3tu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_677d1")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 2.9999998, 0, 0, 0, 2.9999998, 0, 0, 0)
+billboard = 1
+texture_filter = 2
+texture = ExtResource("2_y25om")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_872ht")
+}
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

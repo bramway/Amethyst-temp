@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtb37lxvtu8bo"]
+
+[ext_resource type="Script" uid="uid://b3jyq8ak0k3bn" path="res://scripts/UI/master.gd" id="1_mc4i6"]
+[ext_resource type="PackedScene" uid="uid://cyq80hdt0e8rq" path="res://scenes/Levels/level.tscn" id="2_h1px5"]
+[ext_resource type="PackedScene" uid="uid://o3nccnnf2pc3" path="res://scenes/UI/ui.tscn" id="3_gjxaa"]
+[ext_resource type="Script" uid="uid://bq5v07ylwhly2" path="res://scripts/Elements/element_manager.gd" id="3_h1px5"]
+[ext_resource type="Script" uid="uid://cqbfacqmveiye" path="res://scripts/UI/ui.gd" id="4_eqysl"]
+[ext_resource type="PackedScene" uid="uid://d0mojmdvqls4v" path="res://scenes/UI/dialogue.tscn" id="5_loh8r"]
+[ext_resource type="PackedScene" uid="uid://fpu04gag0ux0" path="res://scenes/UI/element_display.tscn" id="6_encrx"]
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+process_mode = 3
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("1_mc4i6")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Level" parent="SubViewport" instance=ExtResource("2_h1px5")]
+process_mode = 1
+
+[node name="ElementManager" type="Node" parent="SubViewport"]
+script = ExtResource("3_h1px5")
+
+[node name="UI" parent="SubViewport" instance=ExtResource("3_gjxaa")]
+script = ExtResource("4_eqysl")
+
+[node name="DialogueScreen" parent="SubViewport/UI" instance=ExtResource("5_loh8r")]
+process_mode = 1
+
+[node name="ElementDisplay" parent="SubViewport/UI" instance=ExtResource("6_encrx")]

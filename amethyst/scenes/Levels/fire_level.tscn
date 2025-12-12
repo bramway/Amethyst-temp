@@ -1,0 +1,76 @@
+[gd_scene load_steps=15 format=3 uid="uid://bi3vagktn2oho"]
+
+[ext_resource type="Texture2D" uid="uid://dxl77ud0rf0fv" path="res://Images/Textures/fire_ground.png" id="1_1k76i"]
+[ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="2_43trh"]
+[ext_resource type="Texture2D" uid="uid://bfqq2ukoy62nk" path="res://Images/Textures/grass.png" id="3_bdtg2"]
+[ext_resource type="PackedScene" uid="uid://b0fypo1x2vsil" path="res://scenes/Objects/spawn_location.tscn" id="4_iprr0"]
+[ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="5_43trh"]
+[ext_resource type="Script" uid="uid://bxe3uvs0tctx8" path="res://scripts/Elements/water_crystal.gd" id="6_iprr0"]
+[ext_resource type="Texture2D" uid="uid://seooemyl4ud7" path="res://Images/Crystals/crystal_of_water.png" id="7_ep57y"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qsqu2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep57y"]
+albedo_texture = ExtResource("1_1k76i")
+uv1_scale = Vector3(256, 256, 256)
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i5jxk"]
+material = SubResource("StandardMaterial3D_ep57y")
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0x40p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akk7d"]
+albedo_texture = ExtResource("3_bdtg2")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_o3f1s"]
+material = SubResource("StandardMaterial3D_akk7d")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akk7d"]
+
+[node name="FireLevel" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.27452025, -0.52975905, 0.8024924, -0.29184067, 0.74928856, 0.59447116, -0.9162248, -0.3973943, 0.051089678, 1.9040678, 2.9701517, 0)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_qsqu2")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_i5jxk")
+
+[node name="AirZone" parent="." instance=ExtResource("2_43trh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.14102, 0.43688822, 0)
+goto_zone_resource = "res://scenes/Levels/air_level.tscn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AirZone"]
+shape = SubResource("BoxShape3D_0x40p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AirZone"]
+mesh = SubResource("BoxMesh_o3f1s")
+
+[node name="SpawnLocation" parent="." instance=ExtResource("4_iprr0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08595562, 0.43688822, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_43trh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5130365, 0)
+
+[node name="WaterCrystal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.070945, 0.70360184, -7.5345154)
+script = ExtResource("6_iprr0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterCrystal"]
+shape = SubResource("CapsuleShape3D_akk7d")
+
+[node name="Sprite3D" type="Sprite3D" parent="WaterCrystal"]
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+texture = ExtResource("7_ep57y")
+
+[connection signal="body_entered" from="WaterCrystal" to="WaterCrystal" method="_on_body_entered"]
