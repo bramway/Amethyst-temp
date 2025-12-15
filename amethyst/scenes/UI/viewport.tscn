@@ -76,6 +76,7 @@ script = ExtResource("4_eqysl")
 process_mode = 1
 
 [node name="LoadZoneBlack" type="ColorRect" parent="SubViewport/UI"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

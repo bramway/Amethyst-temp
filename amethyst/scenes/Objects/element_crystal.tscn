@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://0im6u6q7804p"]
+
+[ext_resource type="Script" uid="uid://bxe3uvs0tctx8" path="res://scripts/Elements/element_crystal.gd" id="1_7if5a"]
+[ext_resource type="Texture2D" uid="uid://8dbgygco3w6l" path="res://Images/Crystals/crystal_of_wind.png" id="1_eijxh"]
+[ext_resource type="Texture2D" uid="uid://xj0t0qjawpdr" path="res://Images/Crystals/crystal_of_fire.png" id="2_7if5a"]
+[ext_resource type="Texture2D" uid="uid://bnxn6sgyyx0ek" path="res://Images/Crystals/crystal_of_earth.png" id="3_r8ea3"]
+[ext_resource type="Texture2D" uid="uid://seooemyl4ud7" path="res://Images/Crystals/crystal_of_water.png" id="4_6mwav"]
+[ext_resource type="Texture2D" uid="uid://bdkisjv0ytxpq" path="res://Images/Crystals/crystal_of_darkness.png" id="5_oyg71"]
+[ext_resource type="Texture2D" uid="uid://s7mafs3takon" path="res://Images/Crystals/crystal_of_light.png" id="6_sndx2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_613q6"]
+radius = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjufw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7if5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r8ea3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6mwav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_eijxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oyg71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sndx2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ElementCrystal" type="Area3D"]
+script = ExtResource("1_7if5a")
+element_type = "water"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_613q6")
+
+[node name="CrystalSprite" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xjufw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

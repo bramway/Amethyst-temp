@@ -6,8 +6,9 @@ enum Element {
 	FIRE,
 	LIGHT,
 	WATER,
-	WIND
+	WIND,
+	NULL
 }
 
-var player_selected_element: Element = Element.FIRE
-var unlocked_elements: Array[Element] = [Element.FIRE]
+var player_selected_element: Element = Element.NULL
+var unlocked_elements: Array[Element] = []

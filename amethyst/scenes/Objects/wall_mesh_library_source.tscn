@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cnrpiq1eiyfki"]
+[gd_scene load_steps=59 format=3 uid="uid://cnrpiq1eiyfki"]
 
 [ext_resource type="Texture2D" uid="uid://dxjwf08ku85ts" path="res://Images/Textures/Walls/wall_0.png" id="1_l027o"]
 [ext_resource type="Texture2D" uid="uid://egeqscxciqb5" path="res://Images/Textures/Walls/wall_1.png" id="2_hiuia"]
@@ -10,14 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://cilf6a7h7i0fs" path="res://Images/Textures/Walls/door_0.png" id="8_wc8pk"]
 [ext_resource type="Texture2D" uid="uid://clyq5vt86hk8y" path="res://Images/Textures/Walls/door_1.png" id="9_86p2v"]
 [ext_resource type="Texture2D" uid="uid://dn1qakdr47ccr" path="res://Images/Textures/Walls/door_2.png" id="10_86p2v"]
-[ext_resource type="Texture2D" uid="uid://bvvk2mdbbtueg" path="res://Images/Textures/Walls/door_3.png" id="11_mfubl"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq78j"]
-albedo_texture = ExtResource("1_l027o")
-texture_filter = 0
+[ext_resource type="Texture2D" uid="uid://mewr7aox743d" path="res://Images/Textures/water.png" id="12_3ddyq"]
+[ext_resource type="Texture2D" uid="uid://c8dxa4octdsff" path="res://Images/Textures/earth_ground.png" id="12_uuq0s"]
+[ext_resource type="Texture2D" uid="uid://dxl77ud0rf0fv" path="res://Images/Textures/fire_ground.png" id="13_ad03s"]
+[ext_resource type="Texture2D" uid="uid://bfqq2ukoy62nk" path="res://Images/Textures/grass.png" id="14_8lob2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w0hkq"]
-material = SubResource("StandardMaterial3D_kq78j")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r1cdi"]
 
@@ -93,12 +91,7 @@ points = PackedVector3Array(-0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0, -0.5, -0.5
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1qheb"]
 points = PackedVector3Array(0, 0.5, -0.5, 0, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na0ag"]
-albedo_texture = ExtResource("11_mfubl")
-texture_filter = 0
-
 [sub_resource type="BoxMesh" id="BoxMesh_dn66j"]
-material = SubResource("StandardMaterial3D_na0ag")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a225y"]
 size = Vector3(1, 0.5, 1)
@@ -113,6 +106,66 @@ left_to_right = 0.0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lkj0c"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkj0c"]
+albedo_texture = ExtResource("12_3ddyq")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_uuq0s"]
+material = SubResource("StandardMaterial3D_lkj0c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ddyq"]
+albedo_texture = ExtResource("12_3ddyq")
+texture_filter = 0
+
+[sub_resource type="PrismMesh" id="PrismMesh_lkj0c"]
+material = SubResource("StandardMaterial3D_3ddyq")
+left_to_right = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l57w"]
+albedo_texture = ExtResource("12_uuq0s")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_vaqpr"]
+material = SubResource("StandardMaterial3D_1l57w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnexn"]
+albedo_texture = ExtResource("12_uuq0s")
+texture_filter = 0
+
+[sub_resource type="PrismMesh" id="PrismMesh_4bnaj"]
+material = SubResource("StandardMaterial3D_bnexn")
+left_to_right = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojya0"]
+albedo_texture = ExtResource("13_ad03s")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_elsoy"]
+material = SubResource("StandardMaterial3D_ojya0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qqst"]
+albedo_texture = ExtResource("13_ad03s")
+texture_filter = 0
+
+[sub_resource type="PrismMesh" id="PrismMesh_4tif8"]
+material = SubResource("StandardMaterial3D_2qqst")
+left_to_right = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orjq4"]
+albedo_texture = ExtResource("14_8lob2")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_rn7sd"]
+material = SubResource("StandardMaterial3D_orjq4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wunlj"]
+albedo_texture = ExtResource("14_8lob2")
+texture_filter = 0
+
+[sub_resource type="PrismMesh" id="PrismMesh_h2080"]
+material = SubResource("StandardMaterial3D_wunlj")
+left_to_right = 0.0
 
 [node name="WallMeshLibrary" type="Node3D"]
 
@@ -235,4 +288,86 @@ mesh = SubResource("PrismMesh_3ddyq")
 [node name="SlopeBody" type="StaticBody3D" parent="Slope1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Slope1/SlopeBody"]
+shape = SubResource("ConvexPolygonShape3D_lkj0c")
+
+[node name="Water1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+mesh = SubResource("BoxMesh_uuq0s")
+
+[node name="WallBody" type="StaticBody3D" parent="Water1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water1/WallBody"]
+shape = SubResource("BoxShape3D_r1cdi")
+debug_fill = false
+
+[node name="WaterSlope" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 8)
+mesh = SubResource("PrismMesh_lkj0c")
+skeleton = NodePath("../Slope1")
+
+[node name="SlopeBody" type="StaticBody3D" parent="WaterSlope"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterSlope/SlopeBody"]
+shape = SubResource("ConvexPolygonShape3D_lkj0c")
+
+[node name="Earth1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+mesh = SubResource("BoxMesh_vaqpr")
+
+[node name="WallBody" type="StaticBody3D" parent="Earth1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Earth1/WallBody"]
+shape = SubResource("BoxShape3D_r1cdi")
+debug_fill = false
+
+[node name="EarthSlope" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 8)
+mesh = SubResource("PrismMesh_4bnaj")
+skeleton = NodePath("../Slope1")
+
+[node name="SlopeBody" type="StaticBody3D" parent="EarthSlope"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EarthSlope/SlopeBody"]
+shape = SubResource("ConvexPolygonShape3D_lkj0c")
+
+[node name="Fire1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+mesh = SubResource("BoxMesh_elsoy")
+skeleton = NodePath("../EarthSlope")
+
+[node name="WallBody" type="StaticBody3D" parent="Fire1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fire1/WallBody"]
+shape = SubResource("BoxShape3D_r1cdi")
+debug_fill = false
+
+[node name="FireSlope" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 10)
+mesh = SubResource("PrismMesh_4tif8")
+skeleton = NodePath("../Slope1")
+
+[node name="SlopeBody" type="StaticBody3D" parent="FireSlope"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FireSlope/SlopeBody"]
+shape = SubResource("ConvexPolygonShape3D_lkj0c")
+
+[node name="Wind1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
+mesh = SubResource("BoxMesh_rn7sd")
+skeleton = NodePath("../EarthSlope")
+
+[node name="WallBody" type="StaticBody3D" parent="Wind1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wind1/WallBody"]
+shape = SubResource("BoxShape3D_r1cdi")
+debug_fill = false
+
+[node name="WindSlope" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 10)
+mesh = SubResource("PrismMesh_h2080")
+skeleton = NodePath("../Slope1")
+
+[node name="SlopeBody" type="StaticBody3D" parent="WindSlope"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WindSlope/SlopeBody"]
 shape = SubResource("ConvexPolygonShape3D_lkj0c")

@@ -1,13 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bk8nlb4ywpn4t"]
+[gd_scene load_steps=13 format=3 uid="uid://bk8nlb4ywpn4t"]
 
 [ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="2_rbkmh"]
 [ext_resource type="Texture2D" uid="uid://bfqq2ukoy62nk" path="res://Images/Textures/grass.png" id="3_k6cbm"]
 [ext_resource type="Texture2D" uid="uid://dbfrc4s7lkh04" path="res://Images/Textures/void.png" id="3_rbkmh"]
 [ext_resource type="PackedScene" uid="uid://b0fypo1x2vsil" path="res://scenes/Levels/spawn_location.tscn" id="4_2qlab"]
 [ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="5_rbkmh"]
-[ext_resource type="Script" uid="uid://bl2q7818psmdd" path="res://scripts/Elements/wind_crystal.gd" id="6_2qlab"]
-[ext_resource type="Texture2D" uid="uid://8dbgygco3w6l" path="res://Images/Crystals/crystal_of_wind.png" id="7_2qlab"]
-[ext_resource type="MeshLibrary" uid="uid://b3g2wpqv4aula" path="res://Images/Textures/Walls/wall_mesh_library.tres" id="8_p7he3"]
+[ext_resource type="PackedScene" uid="uid://0im6u6q7804p" path="res://scenes/Objects/element_crystal.tscn" id="7_cnhm1"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_s2e1d"]
 
@@ -29,11 +27,6 @@ texture_filter = 0
 [sub_resource type="BoxMesh" id="BoxMesh_ubvwy"]
 material = SubResource("StandardMaterial3D_tmq4q")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nfbnb"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wlc5l"]
-size = Vector3(0.5, 3, 3)
-
 [node name="AirLevel" type="Node3D"]
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
@@ -49,7 +42,7 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_nfbnb")
 
 [node name="VoidZone" parent="." instance=ExtResource("2_rbkmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.14102, 0.43688822, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.320118, 0.43688822, -13.555854)
 goto_zone_resource = "res://scenes/Levels/level.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VoidZone"]
@@ -64,36 +57,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08595562, 0.43688822, 0)
 [node name="Player" parent="." instance=ExtResource("5_rbkmh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7656007, 1.8647838, 0)
 
-[node name="WindCrystal" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.070945, 0.70360184, -7.5345154)
-script = ExtResource("6_2qlab")
+[node name="ElementCrystal" parent="." instance=ExtResource("7_cnhm1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17228365, 0.9652662, -2.144147)
+element_type = "wind"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WindCrystal"]
-shape = SubResource("CapsuleShape3D_nfbnb")
+[node name="Interact" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.09860659, 0.06393552, 0.98808384)
+pixel_size = 0.008
+modulate = Color(0, 0, 0.38431373, 1)
+outline_modulate = Color(0.75686276, 0.42745098, 0, 1)
+text = "Thank you for playing our demo!
+This is all the game has to offer for now
+This last element is wind.
+You can go back through the levels and
+see what it does (keybind 4)
+You can go out of bounds with this. Pretty fun!"
+font_size = 68
+outline_size = 6
 
-[node name="Sprite3D" type="Sprite3D" parent="WindCrystal"]
-pixel_size = 0.05
-billboard = 1
-texture_filter = 0
-texture = ExtResource("7_2qlab")
-
-[node name="Walls" type="GridMap" parent="."]
-mesh_library = ExtResource("8_p7he3")
-cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(10, 65530, 1048577, 9, 65530, 1, 8, 65530, 1441793, 7, 65530, 655361, 6, 65530, 655360, 65542, 65530, 655360, 65543, 65530, 655360, 65544, 65530, 655360, 65545, 65530, 655360, 65546, 65530, 655360, 65547, 65530, 655360, 11, 65530, 655360, 11, 65529, 655360, 11, 65528, 655360, 11, 65527, 655360, 11, 65526, 655360, 10, 65526, 655360, 6, 65529, 655360, 6, 65528, 655360, 9, 65526, 655360, 6, 65527, 655360, 6, 65526, 655360, 6, 65525, 655360, 6, 65524, 655360, 6, 65523, 655360, 7, 65523, 655361, 8, 65523, 1, 9, 65523, 1441793, 10, 65523, 1048577, 11, 65523, 655360, 65547, 65523, 1048576, 65546, 65523, 1048576, 65545, 65523, 1048576, 65544, 65523, 1048576, 65543, 65523, 1048576, 65542, 65523, 1048576, 65542, 65524, 1048576, 65542, 65525, 1048576, 65542, 65526, 1048576, 65542, 65527, 1048576, 65542, 65528, 1048576, 65542, 65529, 1048576, 12, 65523, 1048576, 13, 65523, 1048576, 65545, 65526, 1048576, 65546, 65526, 1048576, 65547, 65526, 1048576, 65547, 65527, 1048576, 65547, 65528, 1048576, 65547, 65529, 1048576, 65548, 65523, 1048576, 65549, 65523, 1048576, 65547, 0, 655369, 11, 0, 655367, 10, 0, 655360, 65546, 0, 655360, 10, 65535, 655360, 11, 65535, 655360, 12, 65535, 655360, 12, 0, 655360, 65548, 0, 655360, 65548, 65535, 655360, 65547, 65535, 655360, 65546, 65535, 655360, 131083, 0, 5, 131082, 65535, 0, 131082, 0, 0, 131083, 65535, 0, 131084, 65535, 0, 131084, 0, 0, 11, 65531, 0, 11, 65532, 0, 11, 65533, 0, 11, 65534, 0, 65547, 65534, 0, 65547, 65533, 0, 65547, 65532, 0, 65547, 65531, 0, 65549, 0, 655362, 65550, 0, 1048578, 65551, 0, 2, 65552, 0, 1441794, 131085, 0, 1048577, 131086, 0, 1, 131087, 0, 1441793, 131088, 0, 655361, 13, 0, 655363, 14, 0, 1441795, 15, 0, 1048579, 16, 0, 3, 17, 0, 655366, 65553, 0, 655366, 131089, 0, 655366, 13, 65524, 655366, 13, 65525, 655366, 13, 65526, 655366, 13, 65527, 655366, 13, 65528, 655366, 13, 65529, 655366, 13, 65530, 655366, 13, 65531, 655366, 13, 65532, 655366, 13, 65533, 655366, 65549, 65533, 655366, 65549, 65532, 655366, 65549, 65531, 655366, 65549, 65530, 655366, 65549, 65529, 655366, 65549, 65528, 655366, 65549, 65527, 655366, 65549, 65526, 655366, 65549, 65525, 655366, 65549, 65524, 655366, 13, 65535, 655366, 14, 65535, 655366, 65549, 65535, 655366, 65550, 65535, 655366, 131085, 65535, 655366, 131086, 65535, 655366, 16, 65535, 655366, 65552, 65535, 655366, 131088, 65535, 655366, 14, 65533, 655366, 65550, 65533, 655366, 15, 65533, 655366, 16, 65533, 655366, 17, 65533, 655366, 17, 65535, 655366, 65553, 65535, 655366, 65551, 65533, 655366, 65552, 65533, 655366, 65553, 65533, 655366, 131089, 65535, 655366, 131087, 65535, 655366, 65530, 65532, 0, 65530, 65533, 0, 65530, 65534, 0, 65530, 65535, 0, 65530, 3, 0, 65530, 4, 0, 65530, 5, 0, 65530, 65531, 0, 65530, 65530, 0, 65530, 6, 0, 65530, 2, 1441799, 65530, 1, 1441799, 65530, 0, 1441799, 131066, 2, 1441799, 131066, 1, 1441799, 131066, 0, 1441799, 196602, 2, 1048584, 196602, 0, 1441800, 196602, 1, 1441799, 262138, 1, 1441802, 131066, 3, 1441792, 131066, 4, 1441792, 131066, 5, 1441792, 131066, 6, 1441792, 196602, 3, 1441792, 196602, 4, 1441792, 196602, 5, 1441792, 196602, 6, 1441792, 262138, 2, 1441792, 262138, 3, 1441792, 262138, 4, 1441792, 262138, 5, 1441792, 262138, 6, 1441792, 262138, 0, 1441792, 262138, 65535, 1441792, 262138, 65534, 1441792, 262138, 65533, 1441792, 262138, 65532, 1441792, 262138, 65531, 1441792, 262138, 65530, 1441792, 196602, 65530, 1441792, 196602, 65531, 1441792, 196602, 65532, 1441792, 196602, 65533, 1441792, 196602, 65534, 1441792, 196602, 65535, 1441792, 131066, 65535, 1441792, 131066, 65534, 1441792, 131066, 65533, 1441792, 131066, 65532, 1441792, 131066, 65531, 1441792, 131066, 65530, 1441792, 327674, 1, 1441797, 327674, 2, 1441792, 327674, 3, 1441792, 327674, 4, 1441792, 327674, 5, 1441792, 327674, 6, 1441792, 327674, 65530, 1441792, 327674, 65531, 1441792, 327674, 65532, 1441792, 327674, 65533, 1441792, 327674, 65534, 1441792, 327674, 65535, 1441792, 327674, 0, 1441792)
-}
-metadata/_editor_floor_ = Vector3(0, 0, 0)
-
-[node name="JorisTestLevelZone" parent="." instance=ExtResource("2_rbkmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, 1.5)
-goto_zone_resource = "res://scenes/Levels/joris_test_level.tscn"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="JorisTestLevelZone"]
-shape = SubResource("BoxShape3D_wlc5l")
-
-[node name="SpawnLocation2" parent="." instance=ExtResource("4_2qlab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.7, 1.5)
-spawn_id = 1
-
-[connection signal="body_entered" from="WindCrystal" to="WindCrystal" method="_on_body_entered"]
+[node name="Interact2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.5134745, 0.06393552, -12.496021)
+pixel_size = 0.008
+modulate = Color(0, 0, 0.38431373, 1)
+outline_modulate = Color(0.75686276, 0.42745098, 0, 1)
+text = "Return to start"
+font_size = 68
+outline_size = 6

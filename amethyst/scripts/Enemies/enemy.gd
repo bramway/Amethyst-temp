@@ -77,7 +77,6 @@ func take_damage(attack, direction):
 		$Water_Timer.start()
 		water_speed_boost = true
 	if attack == 'rock':
-		print('hi')
 		health -= rock
 	set_health_bar()
 	if health <= 0:

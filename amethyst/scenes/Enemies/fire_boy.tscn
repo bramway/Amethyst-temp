@@ -1,35 +1,42 @@
-[gd_scene load_steps=21 format=3 uid="uid://bb8tabn5mt2m0"]
+[gd_scene load_steps=29 format=3 uid="uid://bfwrhynoncq8x"]
 
-[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_ea3ow"]
-[ext_resource type="Texture2D" uid="uid://bchjfe575iam" path="res://Images/Spells/fire spritesheet.png" id="2_k7nyq"]
-[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_i74bb"]
+[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_87yiq"]
+[ext_resource type="Texture2D" uid="uid://bchjfe575iam" path="res://Images/Spells/fire spritesheet.png" id="2_vdm3m"]
+[ext_resource type="PackedScene" uid="uid://ccfsuyr4ys3l8" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_3612g"]
+[ext_resource type="Script" uid="uid://dx7p7adw3v52w" path="res://scripts/Spells/summon_manager.gd" id="4_h8ua5"]
+[ext_resource type="PackedScene" uid="uid://di1gun6yw5wpg" path="res://scenes/Spells/fireball.tscn" id="5_x12lr"]
+[ext_resource type="PackedScene" uid="uid://dnqyc8ec4s0vy" path="res://scenes/Spells/rock.tscn" id="6_ff446"]
+[ext_resource type="PackedScene" uid="uid://b2ehg7mc7a6jk" path="res://scenes/Spells/water.tscn" id="7_3xbcw"]
+[ext_resource type="PackedScene" uid="uid://yrv5wxbqm1m4" path="res://scenes/Spells/fire.tscn" id="8_dbg64"]
+[ext_resource type="PackedScene" uid="uid://mb1d8unxjq1y" path="res://scenes/Spells/water_blast.tscn" id="9_ogsdp"]
+[ext_resource type="PackedScene" uid="uid://d0xu72w0vbqf" path="res://scenes/Spells/wind_blast.tscn" id="10_yytcx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie0pa"]
-atlas = ExtResource("2_k7nyq")
+atlas = ExtResource("2_vdm3m")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mapc0"]
-atlas = ExtResource("2_k7nyq")
+atlas = ExtResource("2_vdm3m")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1brvp"]
-atlas = ExtResource("2_k7nyq")
+atlas = ExtResource("2_vdm3m")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg5ub"]
-atlas = ExtResource("2_k7nyq")
+atlas = ExtResource("2_vdm3m")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dpwgx"]
-atlas = ExtResource("2_k7nyq")
+atlas = ExtResource("2_vdm3m")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqg0y"]
-atlas = ExtResource("2_k7nyq")
+atlas = ExtResource("2_vdm3m")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1scbm"]
-atlas = ExtResource("2_k7nyq")
+atlas = ExtResource("2_vdm3m")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bq2ld"]
@@ -246,17 +253,16 @@ radius = 5.608826
 [sub_resource type="ViewportTexture" id="ViewportTexture_4ra3w"]
 viewport_path = NodePath("HealthBar3D/SubViewport")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_n466u"]
+radius = 15.048512
+
 [node name="FireBoy" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Enemies"]]
 collision_layer = 3
-script = ExtResource("1_ea3ow")
-max_health = 100
+script = ExtResource("1_87yiq")
 animation = NodePath("Head/AnimationPlayer")
 animation_name = "flames_turning"
-fireball_damage = 5
-fire_damage = 5
-waterblast_movement = 0.5
-blast_speed = 15.0
-rock = -10
+fire_damage = -5
+waterblast_damage = 10
 
 [node name="Head" type="AnimatedSprite3D" parent="."]
 pixel_size = 0.15
@@ -279,12 +285,13 @@ sprite_frames = SubResource("SpriteFrames_ie0pa")
 animation = &"flame_animation"
 
 [node name="SmallFlame" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.799173, 0.09015618, -0.4507809)
 pixel_size = 0.05
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_mapc0")
 animation = &"flame_animation"
+frame = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_7p1mj")
@@ -311,7 +318,7 @@ texture = SubResource("ViewportTexture_4ra3w")
 [node name="SubViewport" type="SubViewport" parent="HealthBar3D"]
 size = Vector2i(75, 10)
 
-[node name="enemyhealthbar" parent="HealthBar3D/SubViewport" instance=ExtResource("3_i74bb")]
+[node name="enemyhealthbar" parent="HealthBar3D/SubViewport" instance=ExtResource("3_3612g")]
 offset_right = 75.0
 offset_bottom = 10.0
 
@@ -320,6 +327,23 @@ wait_time = 0.25
 
 [node name="Water_Timer" type="Timer" parent="."]
 wait_time = 2.5
+
+[node name="Range_Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="range_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="range_area"]
+shape = SubResource("SphereShape3D_n466u")
+
+[node name="summon_manager" type="Node" parent="."]
+script = ExtResource("4_h8ua5")
+fireball_scene = ExtResource("5_x12lr")
+rock_scene = ExtResource("6_ff446")
+water_scene = ExtResource("7_3xbcw")
+fire_scene = ExtResource("8_dbg64")
+water_blast_scene = ExtResource("9_ogsdp")
+wind_blast_scene = ExtResource("10_yytcx")
 
 [connection signal="body_entered" from="Follow_area" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Follow_area" to="." method="_on_area_3d_body_exited"]
