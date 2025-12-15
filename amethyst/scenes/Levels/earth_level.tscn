@@ -50,6 +50,7 @@ mesh = SubResource("PlaneMesh_w64jo")
 [node name="FireZone" parent="." instance=ExtResource("2_4bqr0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.14102, 0.43688822, 0)
 goto_zone_resource = "res://scenes/Levels/fire_level.tscn"
+load_id = 69
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FireZone"]
 shape = SubResource("BoxShape3D_cfv58")
