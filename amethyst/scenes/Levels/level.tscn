@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cyq80hdt0e8rq"]
+[gd_scene load_steps=17 format=3 uid="uid://cyq80hdt0e8rq"]
 
 [ext_resource type="Texture2D" uid="uid://dbfrc4s7lkh04" path="res://Images/Textures/void.png" id="1_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="2_w8frs"]
 [ext_resource type="Texture2D" uid="uid://c6l3wjiv823ga" path="res://Images/NPC's and player/wizard.png" id="4_2r41h"]
+[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="4_he7fi"]
 [ext_resource type="PackedScene" uid="uid://bu0btelvd2py6" path="res://scenes/Enemies/enemy.tscn" id="4_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://c4vehwl6b341n" path="res://Images/Spells/rock.png" id="5_ppgk2"]
 [ext_resource type="AudioStream" uid="uid://c4plskmabcty" path="res://Sounds/Music/Void.mp3" id="6_2r41h"]
@@ -67,6 +68,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1771274, -10.192005)
+script = ExtResource("4_he7fi")
 
 [node name="WizardNPC" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.489814, 0.8685756, 0)
@@ -113,9 +115,12 @@ mesh = SubResource("BoxMesh_olg7q")
 
 [node name="Enemy2" parent="." instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1623306, 0.79999995, -9.485577)
+script = ExtResource("4_he7fi")
 
 [node name="Enemy3" parent="." instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8005593, 0.7999995, -9.204742)
+script = ExtResource("4_he7fi")
 
 [node name="Enemy4" parent="." instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75821364, 0.79999995, -7.105623)
+script = ExtResource("4_he7fi")
