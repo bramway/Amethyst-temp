@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
-const MOVEMENT_SPEED = 4
-const SPRINT_SPEED = 7
+const MOVEMENT_SPEED = 5
+const SPRINT_SPEED = 8
 const GRAVITY = 9
-const DASH_SPEED = 20
+const DASH_SPEED = 25
 var player_direction = Vector2(0.0, 1.0) # The direction in which the player last moved (stays the same when the player stands still)
 const DIRECTION_CHANGE_DELAY := 0.0625 # The delay between when the player moves from a diagonal to a straight direction, 
 										# and when the player_direction changes with it. 

@@ -1,11 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://bb50i2do0b7qe"]
 
-[ext_resource type="Script" uid="uid://byogs7omepesc" path="res://scripts/player.gd" id="1_i3pqv"]
+[ext_resource type="Script" uid="uid://byogs7omepesc" path="res://scripts/Elements/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mxvasb3fmxkg" path="res://Images/NPC's and player/staff.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://be1d0stoobhwt" path="res://Images/NPC's and player/player_sprite.png" id="2_hqtel"]
 [ext_resource type="Script" uid="uid://85nn7muhc4qv" path="res://scripts/Spells/summon_source.gd" id="3_sweqy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hs0m"]
+radius = 0.4
+height = 1.7
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_hqtel")
