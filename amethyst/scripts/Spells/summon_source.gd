@@ -9,7 +9,8 @@ const wind_blast_scene = preload("res://scenes/Spells/wind_blast.tscn")
 const fire_scene = preload("res://scenes/Spells/fire.tscn")
 var spell_direction: Vector2
 var spell_position: Vector2
-
+var FireScene = fire_scene.instantiate()
+var mm = magic_math.new()
 
 @export var ROCK_AMOUNT = 12
 @export var WATER_AMOUNT = 8
@@ -30,16 +31,10 @@ var ready_to_cast: bool = true
 @onready var summon_timer = $SummonTimer
 @onready var spell_delay_timer = $SpellDelayTimer
 @onready var camera = $"../PlayerCamera"
-@onready var camera_position: Vector3 = camera.position
-@onready var camera_angle_x: float = PI + camera.rotation.x # in radians
-@onready var camera_vertical_fov_deg: float = camera.fov # in degrees
-@onready var half_camera_vertical_fov: float = deg_to_rad(0.5 * camera_vertical_fov_deg)
-#fcn = 1.0        0.0       0.0
-#      0.0  cos(hoek) sin(hoek)
-#      0.0 -sin(hoek) cos(hoek)
+
+
 
 func _process(_delta):
-	var element = ElementManager.Element
 	if Input.is_action_just_pressed("Fire") and ElementManager.Element.FIRE in ElementManager.unlocked_elements:
 		ElementManager.player_selected_element = ElementManager.Element.FIRE
 	if Input.is_action_just_pressed("Earth") and ElementManager.Element.EARTH in ElementManager.unlocked_elements:
@@ -50,8 +45,10 @@ func _process(_delta):
 		ElementManager.player_selected_element = ElementManager.Element.WIND
 	
 	if Input.is_action_just_pressed("Spell_1") or Input.is_action_just_pressed("Spell_2"):
-		get_spell_direction()
-	
+		var pos_dir = mm.get_spell_direction(camera, get_viewport().get_visible_rect().size, get_viewport().get_mouse_position())
+		spell_position = pos_dir[0]
+		spell_direction	= pos_dir[1]
+		
 	if Input.is_action_just_pressed("Spell_1"):
 		match ElementManager.player_selected_element:
 			ElementManager.Element.FIRE:
@@ -86,18 +83,7 @@ func _process(_delta):
 				pass
 
 
-func get_spell_direction() -> void:
-	"""Sets the spell_position and spell_direction variables."""
-	var screen_size: Vector2 = get_viewport().get_visible_rect().size
-	var d: float = 0.5 * screen_size.y / tan(half_camera_vertical_fov)
-	var mouse_position = get_viewport().get_mouse_position()
-	var relative_mouse_position = (mouse_position - 0.5 * (screen_size))
-	var mouse_direction_local := Vector3(relative_mouse_position.x, relative_mouse_position.y, d)
-	var mouse_direction_global := Vector3(mouse_direction_local.x, cos(camera_angle_x) * mouse_direction_local.y - sin(camera_angle_x) * mouse_direction_local.z, sin(camera_angle_x) * mouse_direction_local.y + cos(camera_angle_x) * mouse_direction_local.z)
-	mouse_direction_global *= (camera_position.y) / mouse_direction_global.y
-	mouse_direction_global.z -= camera_position.z
-	spell_position = Vector2(-mouse_direction_global.z, -mouse_direction_global.x)
-	spell_direction = spell_position.normalized()
+
 
 
 func summon_in_direction(scene: Object, direction: Vector2) -> void:
@@ -138,7 +124,7 @@ func summon_at_position(scene: Object, pos: Vector2) -> void:
 
 func summon_rock():
 	'''summons rock in a circle by making a list of instances, then spawning them on summon timer'''
-	var circle = make_circle(ROCK_AMOUNT, 4)
+	var circle = mm.make_circle(ROCK_AMOUNT, 4)
 	for i in range(len(circle)):
 		var rock = rock_scene.instantiate()
 
@@ -148,7 +134,7 @@ func summon_rock():
 
 
 func summon_water():
-	var circle = make_circle(WATER_AMOUNT, 4)
+	var circle = mm.make_circle(WATER_AMOUNT, 4)
 	for i in range(len(circle)):
 		var water = water_scene.instantiate()
 		water.position = global_position + (circle[i] * 1.2)
@@ -156,22 +142,9 @@ func summon_water():
 	summon_timer.start(SPAWN_TIME)
 
 
+
 func _on_summon_timer_timeout():
 	'''Pops all elements from summon lists and spawns them'''
 	if summon_list != []:
 		root_node.add_child(summon_list.pop_front())
 		summon_timer.start(SPAWN_TIME + randf() * RANDOMNESS)
-
-
-func make_circle(amount, layer):
-	'''makes a normalized vector circle list with given amount of positions, can have multiple circles with complexity'''
-	var position_list = []
-	for i in range(layer):
-		for j in range(amount):
-			var pos: Vector3
-			pos.x = cos(2 * PI * (i + j)/amount)
-			pos.z = sin(2 * PI * (i + j)/amount)
-			
-			var pos_rotated = pos.rotated(Vector3(0, 1, 0), (i * PI / amount)) * (0.2 * i + 1)
-			position_list.append(pos_rotated)
-	return position_list

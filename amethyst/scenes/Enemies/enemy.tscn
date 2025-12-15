@@ -1,8 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bu0btelvd2py6"]
+[gd_scene load_steps=17 format=3 uid="uid://bu0btelvd2py6"]
 
-[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_48hpc"]
-[ext_resource type="Texture2D" uid="uid://cm1d1ngaercti" path="res://Images/NPC's and player/enemy_sprite.png" id="2_8swre"]
-[ext_resource type="PackedScene" uid="uid://ccfsuyr4ys3l8" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_0th86"]
+[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Texture2D" uid="uid://cm1d1ngaercti" path="res://Images/NPC's and player/enemy_sprite.png" id="2_md0e3"]
+[ext_resource type="Script" uid="uid://dx7p7adw3v52w" path="res://scripts/Spells/summon_manager.gd" id="4_0th86"]
+[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="4_5uy6h"]
+[ext_resource type="Script" uid="uid://dd1i53ng1bj30" path="res://scripts/Spells/spell_caster.gd" id="5_uqk7a"]
+[ext_resource type="PackedScene" uid="uid://di1gun6yw5wpg" path="res://scenes/Spells/fireball.tscn" id="6_etrq3"]
+[ext_resource type="PackedScene" uid="uid://dnqyc8ec4s0vy" path="res://scenes/Spells/rock.tscn" id="7_u34kh"]
+[ext_resource type="PackedScene" uid="uid://b2ehg7mc7a6jk" path="res://scenes/Spells/water.tscn" id="8_axrju"]
+[ext_resource type="PackedScene" uid="uid://yrv5wxbqm1m4" path="res://scenes/Spells/fire.tscn" id="9_eega2"]
+[ext_resource type="PackedScene" uid="uid://mb1d8unxjq1y" path="res://scenes/Spells/water_blast.tscn" id="10_grdw8"]
+[ext_resource type="PackedScene" uid="uid://d0xu72w0vbqf" path="res://scenes/Spells/wind_blast.tscn" id="11_4y1mx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7p1mj"]
 
@@ -13,6 +21,9 @@ radius = 5.608826
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4ra3w"]
 viewport_path = NodePath("HealthBar3D/SubViewport")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_48hpc"]
+radius = 15.048512
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 3
@@ -59,6 +70,26 @@ wait_time = 0.25
 [node name="Water_Timer" type="Timer" parent="."]
 wait_time = 2.5
 
+[node name="range_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="range_area"]
+shape = SubResource("SphereShape3D_48hpc")
+
+[node name="spell_caster" type="Node" parent="."]
+script = ExtResource("5_uqk7a")
+
+[node name="Range_Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="summon_manager" type="Node" parent="."]
+script = ExtResource("4_0th86")
+fireball_scene = ExtResource("6_etrq3")
+rock_scene = ExtResource("7_u34kh")
+water_scene = ExtResource("8_axrju")
+fire_scene = ExtResource("9_eega2")
+water_blast_scene = ExtResource("10_grdw8")
+wind_blast_scene = ExtResource("11_4y1mx")
+
 [connection signal="body_entered" from="Follow_area" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Follow_area" to="." method="_on_area_3d_body_exited"]
 [connection signal="child_entered_tree" from="Follow_area/CollisionShape3D" to="." method="_on_collision_shape_3d_child_entered_tree"]
@@ -66,3 +97,5 @@ wait_time = 2.5
 [connection signal="body_exited" from="Damage_area" to="." method="_on_damage_area_body_exited"]
 [connection signal="timeout" from="Blast_Timer" to="." method="_on_blast_timer_timeout"]
 [connection signal="timeout" from="Water_Timer" to="." method="_on_water_timer_timeout"]
+[connection signal="body_entered" from="range_area" to="." method="_on_range_area_body_entered"]
+[connection signal="body_exited" from="range_area" to="." method="_on_range_area_body_exited"]

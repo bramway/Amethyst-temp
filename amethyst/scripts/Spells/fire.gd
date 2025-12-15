@@ -7,6 +7,7 @@ var enemies: Array = []
 var direction: Vector2
 @export var FIRE_DESPAWN_TIMER: float = 5
 
+
 func _ready():
 	fire_tick.timeout.connect(hit)
 	despawn_timer.start(FIRE_DESPAWN_TIMER)
@@ -32,6 +33,5 @@ func hit():
 	for enemy in enemies:	
 		enemy.take_damage('fire', direction)
 
-
-func _on_despawn_timer_timeout():
+func _on_despawn_timer_timeout() -> void:
 	queue_free()

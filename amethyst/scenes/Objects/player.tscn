@@ -1,9 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb50i2do0b7qe"]
+[gd_scene load_steps=18 format=3 uid="uid://bb50i2do0b7qe"]
 
 [ext_resource type="Script" uid="uid://byogs7omepesc" path="res://scripts/Elements/player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://mxvasb3fmxkg" path="res://Images/NPC's and player/staff.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://be1d0stoobhwt" path="res://Images/NPC's and player/player_sprite.png" id="2_hqtel"]
-[ext_resource type="Script" uid="uid://85nn7muhc4qv" path="res://scripts/Spells/summon_source.gd" id="3_sweqy"]
+[ext_resource type="Script" uid="uid://bapsbhbwbvuhb" path="res://scripts/Spells/spell_input.gd" id="4_oor3c"]
+[ext_resource type="Script" uid="uid://dx7p7adw3v52w" path="res://scripts/Spells/summon_manager.gd" id="5_mjmfk"]
+[ext_resource type="Script" uid="uid://dd1i53ng1bj30" path="res://scripts/Spells/spell_caster.gd" id="6_2jryg"]
+[ext_resource type="PackedScene" uid="uid://di1gun6yw5wpg" path="res://scenes/Spells/fireball.tscn" id="6_vdy4j"]
+[ext_resource type="PackedScene" uid="uid://dnqyc8ec4s0vy" path="res://scenes/Spells/rock.tscn" id="7_urogl"]
+[ext_resource type="PackedScene" uid="uid://b2ehg7mc7a6jk" path="res://scenes/Spells/water.tscn" id="8_k3jrf"]
+[ext_resource type="PackedScene" uid="uid://yrv5wxbqm1m4" path="res://scenes/Spells/fire.tscn" id="9_ilw01"]
+[ext_resource type="PackedScene" uid="uid://mb1d8unxjq1y" path="res://scenes/Spells/water_blast.tscn" id="10_2pp5n"]
+[ext_resource type="PackedScene" uid="uid://d0xu72w0vbqf" path="res://scenes/Spells/wind_blast.tscn" id="11_701ei"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hs0m"]
 radius = 0.4
@@ -64,7 +72,6 @@ animation = &"player_walk_animation"
 wait_time = 0.25
 
 [node name="SummonSource" type="Node3D" parent="."]
-script = ExtResource("3_sweqy")
 
 [node name="SummonTimer" type="Timer" parent="SummonSource"]
 
@@ -74,6 +81,25 @@ script = ExtResource("3_sweqy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Dialogue_area"]
 shape = SubResource("CapsuleShape3D_dw050")
+
+[node name="spell_input" type="Node" parent="." node_paths=PackedStringArray("caster", "summoner")]
+script = ExtResource("4_oor3c")
+caster = NodePath("../spell_caster")
+summoner = NodePath("../summon_manager")
+
+[node name="summon_manager" type="Node" parent="."]
+script = ExtResource("5_mjmfk")
+ROCK_AMOUNT = 6
+WATER_AMOUNT = 20
+fireball_scene = ExtResource("6_vdy4j")
+rock_scene = ExtResource("7_urogl")
+water_scene = ExtResource("8_k3jrf")
+fire_scene = ExtResource("9_ilw01")
+water_blast_scene = ExtResource("10_2pp5n")
+wind_blast_scene = ExtResource("11_701ei")
+
+[node name="spell_caster" type="Node" parent="."]
+script = ExtResource("6_2jryg")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="SummonSource/SummonTimer" to="SummonSource" method="_on_summon_timer_timeout"]
