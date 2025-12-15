@@ -2,6 +2,7 @@ extends Node3D
 
 signal health_change
 
+var load_screen = false
 var player_pos: Vector3
 var selected_element
 var player_health = 60:
@@ -11,7 +12,7 @@ var player_health = 60:
 var cheat_code_progress = 0
 const CHEAT_CODE: Array[String] = ["END"] #["UP", "UP", "DOWN", "DOWN", "LEFT", "RIGHT", "LEFT", "RIGHT", "B", "A"]
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	check_for_cheat_code()
 
 func check_for_cheat_code():

@@ -15,9 +15,11 @@ func _on_body_entered(body):
 		switch_level(body)
 
 func switch_level(body):
-	'''Does a scoobeedoo and replaces the current level with the next level'''
+	'''Fades colorrect and replaces the current level with the next level'''
 	var curr_scene = body.get_parent()
 	var scene_parent = curr_scene.get_parent()
+	
+	Global.load_screen = true
 	curr_scene.queue_free()
 	var new_level = load(goto_zone_resource).instantiate()
 	new_level.process_mode = PROCESS_MODE_PAUSABLE

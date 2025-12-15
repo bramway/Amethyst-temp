@@ -4,7 +4,9 @@ extends SubViewportContainer
 @onready var death_screen_resource = load("res://scenes/Menus/death_screen.tscn")
 var just_died = false
 
-
+func _ready():
+	$SubViewport/UI/LoadZoneBlack.color.a = 0
+	
 func _input(_event):
 	'''This paused all processes that are not in subviewportcontainer, so make sure
 	your process is pausable when it should be, and not when it should not be. Level and
@@ -28,3 +30,7 @@ func _process(_delta):
 			var death_screen = death_screen_resource.instantiate()
 			add_child(death_screen)
 		get_tree().paused = not get_tree().paused
+	
+	if Global.load_screen == true:
+		$AnimationPlayer.play("load_fade")
+		Global.load_screen = false
