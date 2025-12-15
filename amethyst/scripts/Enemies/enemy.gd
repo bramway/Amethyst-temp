@@ -11,7 +11,6 @@ var touching: bool = false
 const max_health = 100
 var health = max_health
 var blast = false
-const blast_speed = 15
 var dir_blast 
 @export var animation: Node
 @export var animation_name: String
@@ -52,7 +51,7 @@ func _process(_delta):
 	
 func _ready():
 	hit_timer.timeout.connect(hit)
-	#range_timer.timeout.connect(range_attack)
+	range_timer.timeout.connect(range_attack)
 	$HealthBar3D/SubViewport/enemyhealthbar.max_value = max_health
 	set_health_bar()
 	if animation:
@@ -64,16 +63,22 @@ func set_health_bar():
 	
 func take_damage(attack, direction):
 	if attack == 'Fireball':
-		health -= 5
+		health -= fireball_damage
 	if attack == 'fire':
-		health -= 5
+		health -= fireball_damage
 	if attack == 'windblast':
 		blast = true
 		$Blast_Timer.start()
 		dir_blast = direction
-	if attack == 'waterblast':
-		movement_speed = 1.5
+	if attack == 'waterblast' or attack == 'water':
+		if not water_speed_boost:
+			movement_speed *= waterblast_movement
+		health -= waterblast_damage
 		$Water_Timer.start()
+		water_speed_boost = true
+	if attack == 'rock':
+		print('hi')
+		health -= rock
 	set_health_bar()
 	if health <= 0:
 		queue_free()

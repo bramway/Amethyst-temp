@@ -12,6 +12,10 @@ var player_fired: bool
 func _ready():
 	animation.play("rock_animation")
 	
+func apply_wind():
+	apply_impulse(dir_blast * speed)
+	impulse = true
+	
 func despawn():
 	despawn_timer.start(1 + randf())
 
@@ -31,4 +35,5 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			if body.is_in_group("Enemies"):
 				if body.has_method("take_damage"):
 					body.take_damage('rock', direction)		
+					
 				queue_free()

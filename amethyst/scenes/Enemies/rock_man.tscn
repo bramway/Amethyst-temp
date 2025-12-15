@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_kjfma"]
 [ext_resource type="Texture2D" uid="uid://ct1fdhl1gukmx" path="res://Images/NPC's and player/rock_man.png" id="2_4ge31"]
 [ext_resource type="Texture2D" uid="uid://l56jk6xlhcfg" path="res://Images/NPC's and player/rock_boy.png" id="2_rf04j"]
-[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_4ge31"]
+[ext_resource type="PackedScene" uid="uid://ccfsuyr4ys3l8" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_4ge31"]
 [ext_resource type="Script" uid="uid://dx7p7adw3v52w" path="res://scripts/Spells/summon_manager.gd" id="5_rrx0a"]
 [ext_resource type="Script" uid="uid://dd1i53ng1bj30" path="res://scripts/Spells/spell_caster.gd" id="6_fmkla"]
 [ext_resource type="PackedScene" uid="uid://di1gun6yw5wpg" path="res://scenes/Spells/fireball.tscn" id="6_wnf0h"]

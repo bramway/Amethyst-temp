@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_6e5h5"]
 [ext_resource type="Texture2D" uid="uid://derlx8a27f5c1" path="res://Images/NPC's and player/water_boy.png" id="2_kigiu"]
-[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_kigiu"]
+[ext_resource type="PackedScene" uid="uid://ccfsuyr4ys3l8" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_kigiu"]
 [ext_resource type="Script" uid="uid://dx7p7adw3v52w" path="res://scripts/Spells/summon_manager.gd" id="4_16den"]
 [ext_resource type="Script" uid="uid://dd1i53ng1bj30" path="res://scripts/Spells/spell_caster.gd" id="5_hm3y5"]
 [ext_resource type="PackedScene" uid="uid://di1gun6yw5wpg" path="res://scenes/Spells/fireball.tscn" id="6_vwej1"]
