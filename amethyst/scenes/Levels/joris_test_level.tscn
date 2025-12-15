@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://p5xnc35btetu"]
+[gd_scene load_steps=10 format=3 uid="uid://p5xnc35btetu"]
 
 [ext_resource type="Texture2D" uid="uid://bfqq2ukoy62nk" path="res://Images/Textures/grass.png" id="1_xvg03"]
 [ext_resource type="MeshLibrary" uid="uid://b3g2wpqv4aula" path="res://Images/Textures/Walls/wall_mesh_library.tres" id="2_7jnrn"]
 [ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="3_b4n6o"]
 [ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="4_rak8p"]
+[ext_resource type="PackedScene" uid="uid://b0fypo1x2vsil" path="res://scenes/Levels/spawn_location.tscn" id="5_7jnrn"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kb0wy"]
 
@@ -49,9 +50,13 @@ metadata/_editor_floor_ = Vector3(0, 3, 0)
 [node name="AirZone" parent="." instance=ExtResource("3_b4n6o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0.5, 0.5)
 goto_zone_resource = "res://scenes/Levels/air_level.tscn"
+load_id = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AirZone"]
 shape = SubResource("BoxShape3D_c6bw8")
 
 [node name="Player" parent="." instance=ExtResource("4_rak8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, 0.5)
+
+[node name="SpawnLocation" parent="." instance=ExtResource("5_7jnrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.7, 0.5)

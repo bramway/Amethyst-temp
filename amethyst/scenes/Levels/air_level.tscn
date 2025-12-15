@@ -92,4 +92,8 @@ goto_zone_resource = "res://scenes/Levels/joris_test_level.tscn"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JorisTestLevelZone"]
 shape = SubResource("BoxShape3D_wlc5l")
 
+[node name="SpawnLocation2" parent="." instance=ExtResource("4_2qlab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.7, 1.5)
+spawn_id = 1
+
 [connection signal="body_entered" from="WindCrystal" to="WindCrystal" method="_on_body_entered"]

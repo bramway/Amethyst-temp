@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const MOVEMENT_SPEED = 5
 const SPRINT_SPEED = 8
-const GRAVITY = 9
+const GRAVITY = 30
 const DASH_SPEED = 25
 var player_direction = Vector2(0.0, 1.0) # The direction in which the player last moved (stays the same when the player stands still)
 const DIRECTION_CHANGE_DELAY := 0.0625 # The delay between when the player moves from a diagonal to a straight direction, 
@@ -11,6 +11,7 @@ const DIRECTION_CHANGE_DELAY := 0.0625 # The delay between when the player moves
 var direction_change_timer := 0.0 # The timer that counts when player_direction can move from a diagonal to an adjacent straight direction.
 var dash_direction: Vector2
 var is_dashing: bool = false
+var downwards_velocity: float = 0.0
 
 @onready var dash_timer = $"DashTimer"
 @onready var staff = $Staff
@@ -30,13 +31,20 @@ func movement(_delta):
 	'''gets player input and converts it to physics velocity'''
 	var dir = Input.get_vector("Forward", "Backward", "Left", "Right")
 	assess_player_direction(dir, _delta)
+	do_gravity(_delta)
 	if is_dashing:
 		velocity = Vector3(dash_direction.y * DASH_SPEED, 0, dash_direction.x * DASH_SPEED)
 	elif Input.is_action_pressed("Sprint"):
-		velocity = Vector3(dir.y * SPRINT_SPEED, -GRAVITY, dir.x * SPRINT_SPEED)
+		velocity = Vector3(dir.y * SPRINT_SPEED, -downwards_velocity, dir.x * SPRINT_SPEED)
 	else:
-		velocity = Vector3(dir.y * MOVEMENT_SPEED, -GRAVITY, dir.x * MOVEMENT_SPEED)
+		velocity = Vector3(dir.y * MOVEMENT_SPEED, -downwards_velocity, dir.x * MOVEMENT_SPEED)
 	move_and_slide()
+
+func do_gravity(delta):
+	if is_on_floor() or is_dashing:
+		downwards_velocity = 0.0
+	else:
+		downwards_velocity += delta * GRAVITY
 
 func assess_player_direction(direction: Vector2, delta: float) -> void:
 	"""Assesses the player direction and changes the player_direction variable accordingly"""

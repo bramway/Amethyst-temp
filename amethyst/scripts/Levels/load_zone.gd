@@ -24,10 +24,10 @@ func switch_level(body):
 	scene_parent.add_child(new_level)
 	move_player(new_level)
 	
-func move_player(level):
+func move_player(level: Node):
 	'''matches spawn_location id with load_id so it can get the proper location, then puts the new player there.'''
-	for node in level.find_children("SpawnLocation"):
-		if node.id == load_id:
+	for node in level.get_children():
+		if "spawn_id" in node and node.spawn_id == load_id:
 			var player = level.find_child("Player")
 			player.global_position = node.global_position
 			

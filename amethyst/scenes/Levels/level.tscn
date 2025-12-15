@@ -105,6 +105,7 @@ autoplay = true
 [node name="WaterZone" parent="." instance=ExtResource("7_klq6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.14102, 0.43688822, 0)
 goto_zone_resource = "res://scenes/Levels/ice_level.tscn"
+player_destination_coords = Vector3(0, 0.8, 0)
 load_id = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterZone"]

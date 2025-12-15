@@ -55,6 +55,7 @@ transform = Transform3D(0.27452025, -0.52975905, 0.80249244, -0.29184067, 0.7492
 [node name="EarthZone" parent="." instance=ExtResource("3_fpap8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.57391405, 0.08369923)
 goto_zone_resource = "res://scenes/Levels/earth_level.tscn"
+player_destination_coords = Vector3(5, 0.8, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EarthZone"]
 shape = SubResource("BoxShape3D_o7d81")
