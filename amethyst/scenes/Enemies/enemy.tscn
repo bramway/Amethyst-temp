@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://bu0btelvd2py6"]
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_7p1mj"]
-[ext_resource type="Texture2D" uid="uid://cm1d1ngaercti" path="res://Images/NPC's and player/enemy_sprite.png" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://cm1d1ngaercti" path="res://Images/NPC's and player/enemy_sprite.png" id="2_8swre"]
 [ext_resource type="Script" uid="uid://dx7p7adw3v52w" path="res://scripts/Spells/summon_manager.gd" id="4_0th86"]
-[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="4_5uy6h"]
+[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_0th86"]
 [ext_resource type="Script" uid="uid://dd1i53ng1bj30" path="res://scripts/Spells/spell_caster.gd" id="5_uqk7a"]
 [ext_resource type="PackedScene" uid="uid://di1gun6yw5wpg" path="res://scenes/Spells/fireball.tscn" id="6_etrq3"]
 [ext_resource type="PackedScene" uid="uid://dnqyc8ec4s0vy" path="res://scenes/Spells/rock.tscn" id="7_u34kh"]

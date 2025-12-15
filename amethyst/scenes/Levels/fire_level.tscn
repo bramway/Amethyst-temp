@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bxe3uvs0tctx8" path="res://scripts/Elements/water_crystal.gd" id="6_iprr0"]
 [ext_resource type="Texture2D" uid="uid://seooemyl4ud7" path="res://Images/Crystals/crystal_of_water.png" id="7_ep57y"]
 [ext_resource type="AudioStream" uid="uid://gebugqpqdj2j" path="res://Sounds/Music/fire intense.mp3" id="8_b6e14"]
-[ext_resource type="PackedScene" uid="uid://bb8tabn5mt2m0" path="res://scenes/Enemies/fire_boy.tscn" id="9_lkvnc"]
+[ext_resource type="PackedScene" uid="uid://bb8tabn5mt2m0" path="res://scenes/Enemies/rock_boy.tscn" id="9_lkvnc"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qsqu2"]
 
@@ -52,7 +52,6 @@ mesh = SubResource("PlaneMesh_i5jxk")
 [node name="AirZone" parent="." instance=ExtResource("2_43trh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.14102, 0.43688822, 0)
 goto_zone_resource = "res://scenes/Levels/air_level.tscn"
-player_destination_coords = Vector3(3, 0.8, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AirZone"]
 shape = SubResource("BoxShape3D_0x40p")
@@ -62,7 +61,6 @@ mesh = SubResource("BoxMesh_o3f1s")
 
 [node name="SpawnLocation" parent="." instance=ExtResource("4_iprr0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08595562, 0.43688822, 2.6774938)
-id = 69
 
 [node name="Player" parent="." instance=ExtResource("5_43trh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
