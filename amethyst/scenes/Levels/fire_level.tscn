@@ -61,7 +61,8 @@ shape = SubResource("BoxShape3D_0x40p")
 mesh = SubResource("BoxMesh_o3f1s")
 
 [node name="SpawnLocation" parent="." instance=ExtResource("4_iprr0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08595562, 0.43688822, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08595562, 0.43688822, 2.6774938)
+id = 69
 
 [node name="Player" parent="." instance=ExtResource("5_43trh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
