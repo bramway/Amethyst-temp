@@ -1,0 +1,330 @@
+[gd_scene load_steps=21 format=3 uid="uid://bb8tabn5mt2m0"]
+
+[ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_ea3ow"]
+[ext_resource type="Texture2D" uid="uid://bchjfe575iam" path="res://Images/Spells/fire spritesheet.png" id="2_k7nyq"]
+[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_i74bb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie0pa"]
+atlas = ExtResource("2_k7nyq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mapc0"]
+atlas = ExtResource("2_k7nyq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1brvp"]
+atlas = ExtResource("2_k7nyq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg5ub"]
+atlas = ExtResource("2_k7nyq")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpwgx"]
+atlas = ExtResource("2_k7nyq")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqg0y"]
+atlas = ExtResource("2_k7nyq")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1scbm"]
+atlas = ExtResource("2_k7nyq")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bq2ld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie0pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mapc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1brvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg5ub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpwgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqg0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1scbm")
+}],
+"loop": true,
+"name": &"flame_animation",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_y0nod"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:z")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BigFlame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BigFlame:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_k7nyq"]
+resource_name = "flames_turning"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BigFlame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1, 0, 0, 1, 1, 0, 0.2, -1, 1.9666667, 1, 1, 0, 0, 3, 1, 0, -0.2, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SmallFlame")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 0, 0, 0.9999999, 1, 0, -0.2, 1, 1.9666666, 1, -1, 0, 0, 3, 1, 0, 0.2, -1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 6, 0, 6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BigFlame:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 6, 0, 6]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SmallFlame:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 6, 0, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n4a43"]
+_data = {
+&"RESET": SubResource("Animation_y0nod"),
+&"flames_turning": SubResource("Animation_k7nyq")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ie0pa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie0pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mapc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1brvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg5ub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpwgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqg0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1scbm")
+}],
+"loop": true,
+"name": &"flame_animation",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mapc0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie0pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mapc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1brvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg5ub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpwgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqg0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1scbm")
+}],
+"loop": true,
+"name": &"flame_animation",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7p1mj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7p1mj"]
+radius = 5.608826
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4ra3w"]
+viewport_path = NodePath("HealthBar3D/SubViewport")
+
+[node name="FireBoy" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Enemies"]]
+collision_layer = 3
+script = ExtResource("1_ea3ow")
+max_health = 100
+animation = NodePath("Head/AnimationPlayer")
+animation_name = "flames_turning"
+fireball_damage = 5
+fire_damage = 5
+waterblast_movement = 0.5
+blast_speed = 15.0
+rock = -10
+
+[node name="Head" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.15
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_bq2ld")
+animation = &"flame_animation"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_n4a43")
+}
+
+[node name="BigFlame" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.07
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ie0pa")
+animation = &"flame_animation"
+
+[node name="SmallFlame" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_mapc0")
+animation = &"flame_animation"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7p1mj")
+
+[node name="Follow_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Follow_area"]
+shape = SubResource("SphereShape3D_7p1mj")
+
+[node name="Damage_area" type="Area3D" parent="."]
+
+[node name="Damage_collission" type="CollisionShape3D" parent="Damage_area"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_md0e3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="HealthBar3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4781568, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_4ra3w")
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar3D"]
+size = Vector2i(75, 10)
+
+[node name="enemyhealthbar" parent="HealthBar3D/SubViewport" instance=ExtResource("3_i74bb")]
+offset_right = 75.0
+offset_bottom = 10.0
+
+[node name="Blast_Timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="Water_Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="body_entered" from="Follow_area" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Follow_area" to="." method="_on_area_3d_body_exited"]
+[connection signal="child_entered_tree" from="Follow_area/CollisionShape3D" to="." method="_on_collision_shape_3d_child_entered_tree"]
+[connection signal="body_entered" from="Damage_area" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="Damage_area" to="." method="_on_damage_area_body_exited"]
+[connection signal="timeout" from="Blast_Timer" to="." method="_on_blast_timer_timeout"]
+[connection signal="timeout" from="Water_Timer" to="." method="_on_water_timer_timeout"]
