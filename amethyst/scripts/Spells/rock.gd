@@ -7,6 +7,7 @@ var dir_blast
 @export var speed = 15
 var direction
 var impulse = false
+var player_fired: bool
 
 func _ready():
 	animation.play("rock_animation")
@@ -32,7 +33,8 @@ func launch(attack, dir):
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if impulse:
-		if body.is_in_group("Enemies"):
-			if body.has_method("take_damage"):
-				body.take_damage('rock', direction)		
-			queue_free()
+		if player_fired:
+			if body.is_in_group("Enemies"):
+				if body.has_method("take_damage"):
+					body.take_damage('rock', direction)		
+				queue_free()

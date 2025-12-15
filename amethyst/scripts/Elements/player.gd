@@ -15,7 +15,7 @@ var is_dashing: bool = false
 @onready var dash_timer = $"DashTimer"
 @onready var staff = $Staff
 @onready var animation = $AnimatedSprite3D
-@onready var summon_source = $SummonSource
+@onready var spell_input = $spell_input
 
 func _ready():
 	$AnimatedSprite3D.set_animation("player_walk_animation")
@@ -72,7 +72,7 @@ func animate():
 		animation.frame = 1
 		
 func point_wand():
-	var direction = summon_source.spell_direction
+	var direction = spell_input.spell_dir
 	if direction.x < 0:
 		staff.rotation = Vector3(30, 0, atan(direction.y / direction.x))
 	if direction.x > 0:

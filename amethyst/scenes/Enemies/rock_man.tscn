@@ -1,9 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://btw32gt2iskv7"]
+[gd_scene load_steps=24 format=3 uid="uid://btw32gt2iskv7"]
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_kjfma"]
 [ext_resource type="Texture2D" uid="uid://ct1fdhl1gukmx" path="res://Images/NPC's and player/rock_man.png" id="2_4ge31"]
 [ext_resource type="Texture2D" uid="uid://l56jk6xlhcfg" path="res://Images/NPC's and player/rock_boy.png" id="2_rf04j"]
 [ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="3_4ge31"]
+[ext_resource type="Script" uid="uid://dx7p7adw3v52w" path="res://scripts/Spells/summon_manager.gd" id="5_rrx0a"]
+[ext_resource type="Script" uid="uid://dd1i53ng1bj30" path="res://scripts/Spells/spell_caster.gd" id="6_fmkla"]
+[ext_resource type="PackedScene" uid="uid://di1gun6yw5wpg" path="res://scenes/Spells/fireball.tscn" id="6_wnf0h"]
+[ext_resource type="PackedScene" uid="uid://dnqyc8ec4s0vy" path="res://scenes/Spells/rock.tscn" id="7_nr3eb"]
+[ext_resource type="PackedScene" uid="uid://b2ehg7mc7a6jk" path="res://scenes/Spells/water.tscn" id="8_wj84h"]
+[ext_resource type="PackedScene" uid="uid://yrv5wxbqm1m4" path="res://scenes/Spells/fire.tscn" id="9_w3a6u"]
+[ext_resource type="PackedScene" uid="uid://mb1d8unxjq1y" path="res://scenes/Spells/water_blast.tscn" id="10_h1bqh"]
+[ext_resource type="PackedScene" uid="uid://d0xu72w0vbqf" path="res://scenes/Spells/wind_blast.tscn" id="11_71bgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ds33u"]
 atlas = ExtResource("2_rf04j")
@@ -107,6 +115,9 @@ radius = 5.608826
 [sub_resource type="ViewportTexture" id="ViewportTexture_4ra3w"]
 viewport_path = NodePath("HealthBar3D/SubViewport")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_rrx0a"]
+radius = 15.048512
+
 [node name="RockMan" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Enemies"]]
 collision_layer = 3
 script = ExtResource("1_kjfma")
@@ -118,6 +129,7 @@ fireball_damage = 5
 fire_damage = 5
 blast_speed = 15.0
 rock = -25
+element = 1
 
 [node name="Head" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -179,6 +191,26 @@ wait_time = 0.25
 [node name="Water_Timer" type="Timer" parent="."]
 wait_time = 2.5
 
+[node name="summon_manager" type="Node" parent="."]
+script = ExtResource("5_rrx0a")
+fireball_scene = ExtResource("6_wnf0h")
+rock_scene = ExtResource("7_nr3eb")
+water_scene = ExtResource("8_wj84h")
+fire_scene = ExtResource("9_w3a6u")
+water_blast_scene = ExtResource("10_h1bqh")
+wind_blast_scene = ExtResource("11_71bgr")
+
+[node name="spell_caster" type="Node" parent="."]
+script = ExtResource("6_fmkla")
+
+[node name="Range_Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="range_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="range_area"]
+shape = SubResource("SphereShape3D_rrx0a")
+
 [connection signal="body_entered" from="Follow_area" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Follow_area" to="." method="_on_area_3d_body_exited"]
 [connection signal="child_entered_tree" from="Follow_area/CollisionShape3D" to="." method="_on_collision_shape_3d_child_entered_tree"]
@@ -186,3 +218,5 @@ wait_time = 2.5
 [connection signal="body_exited" from="Damage_area" to="." method="_on_damage_area_body_exited"]
 [connection signal="timeout" from="Blast_Timer" to="." method="_on_blast_timer_timeout"]
 [connection signal="timeout" from="Water_Timer" to="." method="_on_water_timer_timeout"]
+[connection signal="body_entered" from="range_area" to="." method="_on_range_area_body_entered"]
+[connection signal="body_exited" from="range_area" to="." method="_on_range_area_body_exited"]

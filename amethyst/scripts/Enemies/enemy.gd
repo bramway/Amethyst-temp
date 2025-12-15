@@ -1,7 +1,9 @@
 extends CharacterBody3D
 
 @onready var hit_timer = $Timer
-@onready var range_timer = $RangeTimer
+@onready var range_timer = $Range_Timer
+@onready var summoner =$summon_manager
+@onready var caster = $spell_caster
 
 var movement_speed = 3
 var player_nearby: bool = false
@@ -20,6 +22,17 @@ var dir_blast
 @export var blast_speed: float
 @export var rock: int
 var water_speed_boost = false
+var mm = magic_math.new()
+
+enum ElementType {
+	FIRE,
+	EARTH,
+	WATER,
+	WIND
+}
+
+@export var element: ElementType = ElementType.FIRE
+
 
 func _process(_delta):
 	if player_nearby:
@@ -78,8 +91,25 @@ func hit():
 	Global.player_health -= 5
 	
 func range_attack():
-	
-	
+	var dir3 = (Global.player_pos - global_position).normalized()
+	var direction = Vector2(dir3.z, dir3.x).normalized()
+	const player_fired: bool = false
+	match element:
+		ElementType.FIRE:
+			caster.try_cast(
+				summoner.summon_in_direction,
+				[summoner.fireball_scene, global_position, direction, player_fired]
+			)
+		ElementType.EARTH:
+			pass
+		ElementType.WATER:
+			caster.try_cast(
+				summoner.summon_in_direction,
+				[summoner.water_blast_scene, global_position, direction, player_fired]
+			)
+		ElementType.WIND:
+			pass
+
 func die():
 	queue_free()
 	
@@ -121,9 +151,12 @@ func _on_range_area_body_entered(body: Node3D) -> void:
 		if body.name == 'Player':
 			range_timer.start()
 			range_attack()
+		
+			
 
 
 func _on_range_area_body_exited(body: Node3D) -> void:
 	if stationary:
 		if body.name == 'Player':
 			range_timer.stop()
+			
