@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb8tabn5mt2m0"]
+[gd_scene load_steps=15 format=3 uid="uid://bl3s4w0d1anuo"]
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_ea3ow"]
 [ext_resource type="Texture2D" uid="uid://l56jk6xlhcfg" path="res://Images/NPC's and player/rock_boy.png" id="2_rd57x"]
@@ -118,7 +118,7 @@ libraries = {
 }
 
 [node name="BigRock" type="Sprite3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40237784, 0, -0.71216464)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 0)
 pixel_size = 0.1
 billboard = 1
 texture_filter = 0
