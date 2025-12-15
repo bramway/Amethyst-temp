@@ -108,7 +108,10 @@ func range_attack():
 				[summoner.water_blast_scene, global_position, direction, player_fired]
 			)
 		ElementType.WIND:
-			pass
+			caster.try_cast(
+				summoner.summon_in_direction,
+				[summoner.wind_blast_scene, global_position, direction, player_fired]
+			)
 
 func die():
 	queue_free()
