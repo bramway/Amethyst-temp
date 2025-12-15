@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cippsg45sdm17"]
+[gd_scene load_steps=18 format=3 uid="uid://cippsg45sdm17"]
 
 [ext_resource type="Texture2D" uid="uid://c8dxa4octdsff" path="res://Images/Textures/earth_ground.png" id="1_ch12s"]
 [ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="2_4bqr0"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://btw32gt2iskv7" path="res://scenes/Enemies/rock_man.tscn" id="7_10lb3"]
 [ext_resource type="Script" uid="uid://j6h04rbjxgml" path="res://scripts/Elements/earth_crystal.gd" id="8_ixsxi"]
 [ext_resource type="Texture2D" uid="uid://bnxn6sgyyx0ek" path="res://Images/Crystals/crystal_of_earth.png" id="9_ddndb"]
+[ext_resource type="AudioStream" uid="uid://bowuewmsf74gt" path="res://Sounds/Music/earth intense.mp3" id="10_ddndb"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ax46o"]
 
@@ -80,5 +81,9 @@ pixel_size = 0.05
 billboard = 1
 texture_filter = 0
 texture = ExtResource("9_ddndb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ddndb")
+autoplay = true
 
 [connection signal="body_entered" from="EarthCrystal" to="EarthCrystal" method="_on_body_entered"]

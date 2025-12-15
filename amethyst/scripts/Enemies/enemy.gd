@@ -31,6 +31,10 @@ func _process(_delta):
 	
 func _ready():
 	hit_timer.timeout.connect(hit)
+<<<<<<< HEAD
+=======
+	#range_timer.timeout.connect(range_attack)
+>>>>>>> main
 	$HealthBar3D/SubViewport/enemyhealthbar.max_value = max_health
 	set_health_bar()
 	if animation:
@@ -59,6 +63,12 @@ func take_damage(attack, direction):
 func hit():
 	Global.player_health -= 5
 	
+<<<<<<< HEAD
+=======
+func range_attack():
+	pass
+	
+>>>>>>> main
 func die():
 	queue_free()
 	
