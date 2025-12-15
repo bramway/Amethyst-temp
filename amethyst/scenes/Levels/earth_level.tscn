@@ -84,6 +84,6 @@ stream = ExtResource("10_ddndb")
 autoplay = true
 
 [node name="RockBoy" parent="." instance=ExtResource("6_4bqr0")]
-transform = Transform3D(1, 0, 0, 0, 0.99909633, 0.042503413, 0, -0.042503413, 0.99909633, 0, 1.0766902, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99909633, 0.042503413, 0, -0.042503413, 0.99909633, 0, 1.0766902, -8.989797)
 
 [connection signal="body_entered" from="EarthCrystal" to="EarthCrystal" method="_on_body_entered"]

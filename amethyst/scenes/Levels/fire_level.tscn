@@ -34,6 +34,9 @@ material = SubResource("StandardMaterial3D_akk7d")
 
 [node name="FireLevel" type="Node3D"]
 
+[node name="FireBoy" parent="." instance=ExtResource("9_lkvnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6500287, 0)
+
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.27452025, -0.52975905, 0.8024924, -0.29184067, 0.74928856, 0.59447116, -0.9162248, -0.3973943, 0.051089678, 1.9040678, 2.9701517, 0)
 
@@ -60,7 +63,7 @@ mesh = SubResource("BoxMesh_o3f1s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08595562, 0.43688822, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_43trh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5130365, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [node name="WaterCrystal" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.070945, 0.70360184, -7.5345154)
@@ -78,7 +81,5 @@ texture = ExtResource("7_ep57y")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_b6e14")
 autoplay = true
-
-[node name="FireBoy" parent="." instance=ExtResource("9_lkvnc")]
 
 [connection signal="body_entered" from="WaterCrystal" to="WaterCrystal" method="_on_body_entered"]
