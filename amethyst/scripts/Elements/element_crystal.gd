@@ -35,5 +35,5 @@ func _on_body_entered(body: Node3D) -> void:
 				
 			_:
 				print('incorrect pickup type')
-					
 		queue_free()
+	

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cdx3sp05ajcjo"
+path="res://.godot/imported/Load zone.wav-a9ada38ea6781d361ba55bf6d9c22a24.sample"
+
+[deps]
+
+source_file="res://Sounds/Load zone.wav"
+dest_files=["res://.godot/imported/Load zone.wav-a9ada38ea6781d361ba55bf6d9c22a24.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

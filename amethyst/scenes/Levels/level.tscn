@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyq80hdt0e8rq"]
+[gd_scene load_steps=14 format=3 uid="uid://cyq80hdt0e8rq"]
 
 [ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="2_w8frs"]
 [ext_resource type="Texture2D" uid="uid://c6l3wjiv823ga" path="res://Images/NPC's and player/wizard.png" id="4_2r41h"]
 [ext_resource type="Texture2D" uid="uid://c4vehwl6b341n" path="res://Images/Spells/rock.png" id="5_ppgk2"]
 [ext_resource type="AudioStream" uid="uid://c4plskmabcty" path="res://Sounds/Music/Void.mp3" id="6_2r41h"]
+[ext_resource type="PackedScene" uid="uid://c4c4pfrngls1j" path="res://scripts/Levels/lock.tscn" id="7_he7fi"]
 [ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="7_klq6b"]
 [ext_resource type="MeshLibrary" uid="uid://b4yyh1p41rsdp" path="res://Images/Textures/Walls/MeshLibraryV3.tres" id="8_87hxj"]
 [ext_resource type="Texture2D" uid="uid://mewr7aox743d" path="res://Images/Textures/water.png" id="8_b121j"]
@@ -78,6 +79,13 @@ outline_size = 6
 [node name="Fire" parent="Objects" instance=ExtResource("9_he7fi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8384857, 6.9370804)
 element_type = 2
+
+[node name="Pickup" parent="Objects" instance=ExtResource("9_he7fi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9300895, -1.4350202)
+pickup_type = 1
+
+[node name="Lock" parent="Objects" instance=ExtResource("7_he7fi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.392976, 0.70565367, 0)
 
 [node name="NPC\'s" type="Node" parent="."]
 

@@ -104,12 +104,9 @@ func _on_dialogue_area_area_entered(area):
 		if not area.unlocked:
 			print('locked')
 			if Global.key_amount > 0:
-				print('unlocked')
-				print(Global.key_amount)
 				area.unlocked = true
 				Global.key_amount -= 1
 				
-			
 
 func _on_dialogue_area_area_exited(area):
 	if area.has_meta('Dialogue'):
