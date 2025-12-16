@@ -1,7 +1,32 @@
 extends SubViewportContainer
 
 @onready var death_screen_resource = load("res://scenes/Menus/death_screen.tscn")
+@onready var pause_menu_resource = load("res://scenes/Menus/pause_menu.tscn")
 var just_died = false
+var pause_instance = null
+
+func pause():
+	print("Pause!")
+	if not is_paused():
+		get_tree().paused = true
+		pause_instance = pause_menu_resource.instantiate()
+		self.add_child(pause_instance)
+
+func unpause():
+	print("Unpause!")
+	if is_paused():
+		get_tree().paused = false
+		pause_instance.queue_free()
+		pause_instance = null
+
+func is_paused():
+	return (pause_instance != null)
+
+func toggle():
+	if is_paused():
+		unpause()
+	else:
+		pause()
 
 func _ready():
 	$SubViewport/UI/LoadZoneBlack.color.a = 0
@@ -11,8 +36,7 @@ func _input(_event):
 	make sure your process is pausable when it should be, and not when it
 	should not be. Level and DialogueScreen are set to pausable.'''
 	if Input.is_action_just_pressed("Pause"):
-		print("input!")
-		PauseManager.toggle()
+		toggle()
 
 
 func _process(_delta):

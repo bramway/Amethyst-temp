@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt7fvaatiw1l4"]
 
 [ext_resource type="Texture2D" uid="uid://bfqq2ukoy62nk" path="res://Images/Textures/grass.png" id="1_ekxnf"]
-[ext_resource type="Script" uid="uid://b0o1omdwmqau3" path="res://scripts/Menus/button_manager.gd" id="1_l6cm7"]
+[ext_resource type="Script" path="res://scripts/Menus/button_manager.gd" id="1_l6cm7"]
 [ext_resource type="Theme" uid="uid://bpcfuixup341c" path="res://themes/main_theme.tres" id="3_bqqt6"]
 
 [node name="MainMenu" type="Control"]
