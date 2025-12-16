@@ -30,6 +30,7 @@ func toggle():
 
 func _ready():
 	$SubViewport/UI/LoadZoneBlack.color.a = 0
+	Global.connect("health_change", display_death_if_dead)
 	
 func _input(_event):
 	'''This paused all processes that are not in subviewportcontainer, so
@@ -38,16 +39,21 @@ func _input(_event):
 	if Input.is_action_just_pressed("Pause"):
 		toggle()
 
+func display_death_if_dead():
+	if Global.player_health <= 0:# and just_died == false:
+		#just_died = true
+		var death_screen = death_screen_resource.instantiate()
+		add_child(death_screen)
 
-func _process(_delta):
-	if Global.player_health <= 0 and just_died == false:
-		just_died = true
-		if get_tree().paused:
-			$Death_screen.queue_free()
-		else:
-			var death_screen = death_screen_resource.instantiate()
-			add_child(death_screen)
-	
-	if Global.load_screen == true:
-		$AnimationPlayer.play("load_fade")
-		Global.load_screen = false
+
+#func _process(_delta):
+#	if Global.player_health <= 0 and just_died == false:
+#		if get_tree().paused:
+#			$Death_screen.queue_free()
+#		else:
+#			var death_screen = death_screen_resource.instantiate()
+#			add_child(death_screen)
+#	
+#	if Global.load_screen == true:
+#		$AnimationPlayer.play("load_fade")
+#		Global.load_screen = false
