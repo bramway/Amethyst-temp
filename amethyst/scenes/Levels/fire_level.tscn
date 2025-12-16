@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://h671oufhvoxw" path="res://Sounds/Music/fire_calm.mp3" id="6_b6e14"]
 [ext_resource type="MeshLibrary" uid="uid://b4yyh1p41rsdp" path="res://Images/Textures/Walls/MeshLibraryV3.tres" id="8_2a3ec"]
 [ext_resource type="PackedScene" uid="uid://bfwrhynoncq8x" path="res://scenes/Enemies/fire_boy.tscn" id="8_aqr4n"]
-[ext_resource type="PackedScene" uid="uid://0im6u6q7804p" path="res://scenes/Objects/element_crystal.tscn" id="8_lkvnc"]
+[ext_resource type="PackedScene" uid="uid://0im6u6q7804p" path="res://scenes/Objects/pickup.tscn" id="8_lkvnc"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qsqu2"]
 
@@ -74,9 +74,6 @@ text = "Fire cannot kill fire"
 font_size = 68
 outline_size = 6
 
-[node name="element_crystal" parent="." instance=ExtResource("8_lkvnc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.041973, 1.5924621, -9.650286)
-
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("8_2a3ec")
 cell_size = Vector3(1, 1, 1)
@@ -98,3 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3567472, 0)
 
 [node name="FireBoy4" parent="enemies" instance=ExtResource("8_aqr4n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2008054, 0)
+
+[node name="Pickup" parent="." instance=ExtResource("8_lkvnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6659808, -20.590717)
+element_type = 4

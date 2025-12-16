@@ -5,6 +5,7 @@ signal health_change
 var load_screen = false
 var player_pos: Vector3
 var selected_element
+var key_amount = 0
 var player_health = 60:
 	set(value):
 		player_health = value

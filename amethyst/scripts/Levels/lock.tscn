@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4c4pfrngls1j"]
+
+[ext_resource type="Script" uid="uid://br3q6bpnu6h8e" path="res://scenes/Objects/lock.gd" id="1_0s0rt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ypcws"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ypcws"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0s0rt"]
+
+[node name="Lock" type="Area3D"]
+script = ExtResource("1_0s0rt")
+
+[node name="Lock" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lock"]
+shape = SubResource("BoxShape3D_ypcws")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ypcws")
+skeleton = NodePath("../Lock")
+
+[node name="Detectionshape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_0s0rt")
