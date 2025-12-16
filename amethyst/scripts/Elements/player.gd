@@ -93,9 +93,9 @@ func _on_dialogue_area_area_entered(area):
 	'''method for changing the queued dialog in global var
 	(this is in global as it needs to be accessed by a child of viewport)'''
 
-	Dialogue.reset()
 
 	if area.has_meta('Dialogue'):
+		Dialogue.reset()
 		Dialogue.curr_dialogue = area.get_meta('Dialogue')
 	if area.has_meta('DialogueSprite'):
 		Dialogue.curr_dialogue_sprite = area.get_meta('DialogueSprite')
