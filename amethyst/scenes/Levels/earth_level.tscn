@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bb8tabn5mt2m0" path="res://scenes/Enemies/rock_boy.tscn" id="6_4bqr0"]
 [ext_resource type="PackedScene" uid="uid://btw32gt2iskv7" path="res://scenes/Enemies/rock_man.tscn" id="7_10lb3"]
 [ext_resource type="AudioStream" uid="uid://dl4nkitkf6yaa" path="res://Sounds/Music/earth_calm.mp3" id="7_ixsxi"]
-[ext_resource type="PackedScene" uid="uid://0im6u6q7804p" path="res://scenes/Objects/element_crystal.tscn" id="9_ixsxi"]
+[ext_resource type="PackedScene" uid="uid://0im6u6q7804p" path="res://scenes/Objects/pickup.tscn" id="9_ixsxi"]
 [ext_resource type="MeshLibrary" uid="uid://b4yyh1p41rsdp" path="res://Images/Textures/Walls/MeshLibraryV3.tres" id="10_ddndb"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ax46o"]
@@ -66,10 +66,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11574173, 0.9, 6.0603437)
 stream = ExtResource("7_ixsxi")
 autoplay = true
 
-[node name="ElementCrystal" parent="." instance=ExtResource("9_ixsxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.347443, 3.6743913, -17.53719)
-element_type = "earth"
-
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("10_ddndb")
 cell_size = Vector3(1, 1, 1)
@@ -97,3 +93,7 @@ mouse for rock
 Right mouse for a trap"
 font_size = 68
 outline_size = 6
+
+[node name="Pickup" parent="." instance=ExtResource("9_ixsxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.385298, 3.4885974, -17.809174)
+element_type = 1

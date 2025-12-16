@@ -18,17 +18,20 @@ const RELATIVE_X_POSITION: float = 0.1
 const RELATIVE_Y_POSITION: float = 0.8
 const SCALE = 0.0008
 
+func unlocked(element):
+	return element in ElementManager.unlocked_elements
+
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Fire") and ElementManager.Element.FIRE in ElementManager.unlocked_elements:
+	if Input.is_action_just_pressed("Fire") and unlocked(ElementManager.Element.FIRE):
 		crystal_sprite.frame = 3
 		element_particles.texture.region = atlas_map["fire"]
-	if Input.is_action_just_pressed("Water") and ElementManager.Element.WATER in ElementManager.unlocked_elements:
+	if Input.is_action_just_pressed("Water") and unlocked(ElementManager.Element.WATER):
 		crystal_sprite.frame = 5
 		element_particles.texture.region = atlas_map["water"]
-	if Input.is_action_just_pressed("Earth") and ElementManager.Element.EARTH in ElementManager.unlocked_elements:
+	if Input.is_action_just_pressed("Earth") and unlocked(ElementManager.Element.EARTH):
 		crystal_sprite.frame = 2
 		element_particles.texture.region = atlas_map["earth"]
-	if Input.is_action_just_pressed("Wind") and ElementManager.Element.WIND in ElementManager.unlocked_elements:
+	if Input.is_action_just_pressed("Wind") and unlocked(ElementManager.Element.WIND):
 		crystal_sprite.frame = 6
 		element_particles.texture.region = atlas_map["wind"]
 	self.position = Vector2(viewport.size.x * RELATIVE_X_POSITION, viewport.size.y * RELATIVE_Y_POSITION)

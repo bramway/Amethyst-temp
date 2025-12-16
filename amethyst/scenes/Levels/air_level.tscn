@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dbfrc4s7lkh04" path="res://Images/Textures/void.png" id="3_rbkmh"]
 [ext_resource type="PackedScene" uid="uid://b0fypo1x2vsil" path="res://scenes/Levels/spawn_location.tscn" id="4_2qlab"]
 [ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="5_rbkmh"]
-[ext_resource type="PackedScene" uid="uid://0im6u6q7804p" path="res://scenes/Objects/element_crystal.tscn" id="7_cnhm1"]
+[ext_resource type="PackedScene" uid="uid://0im6u6q7804p" path="res://scenes/Objects/pickup.tscn" id="7_cnhm1"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_s2e1d"]
 
@@ -57,10 +57,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08595562, 0.43688822, 0)
 [node name="Player" parent="." instance=ExtResource("5_rbkmh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7656007, 1.8647838, 0)
 
-[node name="ElementCrystal" parent="." instance=ExtResource("7_cnhm1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17228365, 0.9652662, -2.144147)
-element_type = "wind"
-
 [node name="Interact" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.09860659, 0.06393552, 0.98808384)
 pixel_size = 0.008
@@ -83,3 +79,7 @@ outline_modulate = Color(0.75686276, 0.42745098, 0, 1)
 text = "Return to start"
 font_size = 68
 outline_size = 6
+
+[node name="Pickup" parent="." instance=ExtResource("7_cnhm1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60707617, -2.5202718)
+element_type = 5

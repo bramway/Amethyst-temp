@@ -1,24 +1,39 @@
 extends Area3D
 
-@export var element_type: String
-
-var string_to_properties: Dictionary = { #As we are using foreign enums, better to keep the anims close to home
-	"WATER": [ElementManager.Element.WATER, 2],
-	"EARTH": [ElementManager.Element.EARTH, 1],
-	"FIRE": [ElementManager.Element.FIRE, 0],
-	"WIND": [ElementManager.Element.WIND, 3]
+enum Pickup {
+	ELEMENT,
+	KEY,
+	HEALTH
 }
 
+@export var pickup_type: Pickup
+@export var element_type: ElementManager.Element
+@export var health_amount: int
+
 func _ready() -> void:
-	element_type = element_type.to_upper()
 	
-	if string_to_properties[element_type][0] in ElementManager.unlocked_elements:
-				queue_free()
+	match pickup_type:
+		Pickup.ELEMENT:
+			if element_type in ElementManager.unlocked_elements:
+						queue_free()
+			$CrystalSprite.frame = element_type
 				
-	$CrystalSprite.frame = string_to_properties[element_type][1]
+		Pickup.KEY:
+			$CrystalSprite.frame = 3 #Key frame!
 	
 func _on_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
-		print('yawoo')
-		ElementManager.unlocked_elements.append(string_to_properties[element_type][0])
+		match pickup_type:
+			Pickup.ELEMENT:
+				ElementManager.unlocked_elements.append(element_type)
+			Pickup.KEY:
+				Global.key_amount += 1
+				print(Global.key_amount)
+				
+			Pickup.HEALTH:
+				print('not implemented yet')
+				
+			_:
+				print('incorrect pickup type')
+					
 		queue_free()
