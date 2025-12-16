@@ -101,15 +101,9 @@ func _populate_tree(tree: Tree, scores: Dictionary):
 		item.set_text(3, str(int(row.get("deaths"))))
 		item.set_text(4, str(int(row.get("game_time"))))
 
-@onready var root = get_tree().get_root()
-@onready var main_menu_resource = load("res://scenes/main_menu.tscn")
 
 func _on_back_button_pressed() -> void:
-	var curr_scene = root.get_child(root.get_child_count() - 1)
-	curr_scene.queue_free()
-	var main_menu = main_menu_resource.instantiate()
-	root.add_child(main_menu)
-
+	queue_free()
 
 func _on_refresh_button_pressed() -> void:
 	%Tree.clear()

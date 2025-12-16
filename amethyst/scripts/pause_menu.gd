@@ -1,6 +1,5 @@
 extends Control
 
-@onready var main_menu_resource = load("res://scenes/Menus/main_menu.tscn")
 @onready var root = get_tree().get_root()
 
 func _ready():
@@ -20,7 +19,5 @@ func _on_quit_button_pressed():
 	#var curr_scene = root.get_child(root.get_child_count() -1)
 	#curr_scene.queue_free()
 
-	var main_menu = main_menu_resource.instantiate()
-	self.get_parent().get_parent().add_child(main_menu)
 	self.get_parent().queue_free()
 	queue_free()

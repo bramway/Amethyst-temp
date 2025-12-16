@@ -10,7 +10,6 @@ func _on_start_button_pressed():
 	in this script I am removing the current child (Main menu level) and adding the first level child.
 	To do this I have preloaded the resources above.'''
 	
-	queue_free()
 	var level = level_resource.instantiate()
 	root.add_child(level)
 
@@ -20,8 +19,6 @@ func _on_options_button_pressed():
 
 
 func _on_scoreboard_button_pressed():
-	var curr_scene = root.get_child(root.get_child_count() - 1)
-	curr_scene.queue_free()
 	var scoreboard = scoreboard_resource.instantiate()
 	root.add_child(scoreboard)
 
