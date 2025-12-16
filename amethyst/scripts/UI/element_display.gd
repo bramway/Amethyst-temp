@@ -14,9 +14,9 @@ var atlas_map: Dictionary = {
 }
 
 
-const RELATIVE_X_POSITION: float = 0.1
-const RELATIVE_Y_POSITION: float = 0.8
-const SCALE = 0.0008
+#const RELATIVE_X_POSITION: float = 0.1
+#const RELATIVE_Y_POSITION: float = 0.8
+#const SCALE = 0.0008
 
 func unlocked(element):
 	return element in ElementManager.unlocked_elements
@@ -34,5 +34,5 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Wind") and unlocked(ElementManager.Element.WIND):
 		crystal_sprite.frame = 6
 		element_particles.texture.region = atlas_map["wind"]
-	self.position = Vector2(viewport.size.x * RELATIVE_X_POSITION, viewport.size.y * RELATIVE_Y_POSITION)
-	self.scale = Vector2(viewport.size.x * SCALE, viewport.size.x * SCALE)
+#	self.position = Vector2(viewport.size.x * RELATIVE_X_POSITION, viewport.size.y * RELATIVE_Y_POSITION)
+#	self.scale = Vector2(viewport.size.x * SCALE, viewport.size.x * SCALE)
