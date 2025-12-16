@@ -53,13 +53,15 @@ func summon_circle(scene: PackedScene, origin: Vector3, amount: int, radius: flo
 	summon_timer.start(SPAWN_TIME)
 
 func summon_line(scene: PackedScene, origin: Vector3, direction: Vector2, amount: int, length: float, movable: bool):
-	print(mm.make_line(direction, amount, length))
-	var obj = scene.instantiate()
-	obj.set('movable', movable)
-	print(direction)
+	var line = mm.make_line(direction, amount, length)
+	var dir3 = Vector3(direction.y, 0, direction.x)
+	for p in line:
+		var obj = scene.instantiate()
+		obj.set('movable', movable)
+		obj.position = origin + p + dir3
+		summon_list.append(obj)
+	summon_timer.start(SPAWN_TIME)
 	
-	#summon_list.append(obj)
-	#summon_timer.start(SPAWN_TIME)
 	
 func _on_summon_timer_timeout():
 	if summon_list.is_empty():

@@ -39,10 +39,15 @@ func get_spell_direction(camera, screen_size, mouse_position):
 func make_line(direction, amount, length):
 	var offset = length / amount
 	var position_list = []
-	position_list.append(Vector3(0,1,0))
+	position_list.append(Vector3(0,0,0))
 	var perp = direction.rotated(PI/2)
+	var x = 0
+	var z = 0
+	const y = 0
 	for _i in range(amount):
-		var pos: Vector3
-		pos.y = 1
-		
+		x += offset * perp.y
+		z += offset * perp.x
+		position_list.append(Vector3(x,y,z))
+		position_list.append(Vector3(-x,y,-z))
+	return position_list
 		

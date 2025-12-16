@@ -122,7 +122,7 @@ func _cast_spell_3(_position: Vector2, direction: Vector2):
 		ElementManager.Element.EARTH:
 			caster.try_cast(
 				summoner.summon_line,
-				[summoner.rock_scene, origin, direction, 8, 10, false]
+				[summoner.rock_scene, origin, direction, 6, 4, false]
 			)
 
 		ElementManager.Element.WATER:
