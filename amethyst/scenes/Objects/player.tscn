@@ -44,6 +44,12 @@ radius = 1.0
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_i3pqv")
+fireball_damage = 10
+fire_damage = 10
+waterblast_damage = 10
+waterblast_movement = 0.5
+blast_speed = 10.0
+rock_damage = 25
 
 [node name="Staff" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0.3, 0, -0.1)
@@ -101,8 +107,12 @@ wind_blast_scene = ExtResource("11_701ei")
 [node name="spell_caster" type="Node" parent="."]
 script = ExtResource("6_2jryg")
 
+[node name="Water_Timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="SummonSource/SummonTimer" to="SummonSource" method="_on_summon_timer_timeout"]
 [connection signal="timeout" from="SummonSource/SpellDelayTimer" to="SummonSource" method="_on_spell_delay_timer_timeout"]
 [connection signal="area_entered" from="Dialogue_area" to="." method="_on_dialogue_area_area_entered"]
 [connection signal="area_exited" from="Dialogue_area" to="." method="_on_dialogue_area_area_exited"]
+[connection signal="timeout" from="Water_Timer" to="." method="_on_water_timer_timeout"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b83l2gat3amuv"]
+
+[ext_resource type="Script" uid="uid://0r6yofmfv85p" path="res://scripts/Spells/rock_blast_scene.gd" id="1_7j5m8"]
+[ext_resource type="Texture2D" uid="uid://c4vehwl6b341n" path="res://Images/Spells/rock.png" id="2_igml8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lnenj"]
+radius = 0.5717964
+
+[node name="RockBlastScene" type="Node3D"]
+script = ExtResource("1_7j5m8")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D"]
+pixel_size = 0.03
+billboard = 1
+texture = ExtResource("2_igml8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_lnenj")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,6 +1,6 @@
 extends Control
 
-@onready var main_menu_resource = load("res://scenes/main_menu.tscn")
+@onready var main_menu_resource = load("res://scenes/Menus/main_menu.tscn")
 @onready var root = get_tree().get_root()
 
 func _on_start_button_pressed():

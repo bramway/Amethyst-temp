@@ -1,11 +1,11 @@
 extends Node3D
 
-
-const DESPAWN_TIME = 0.8
+const DESPAWN_TIME = 1.3
 var despawn_timer = 0.0
-const MOVEMENT_SPEED = 15
-var direction: Vector2 
+const MOVEMENT_SPEED = 4
+var direction: Vector2
 var player_fired: bool
+const GRAVITY = 30
 var movable
 
 
@@ -22,13 +22,16 @@ func _process(delta: float) -> void:
 	if despawn_timer >= DESPAWN_TIME:
 		queue_free()
 
-func _on_windblast_object_body_entered(body: Node3D) -> void:
-	if player_fired:
-		if body.is_in_group("Enemies"):
-			if body.has_method("take_damage"):
-				body.take_damage('windblast', direction)	
-				queue_free()	
-	if body.name == 'Rock_body':
-		body.launch('rock', direction)
-		queue_free()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	#if player_fired:
+		#if body.is_in_group("Enemies"):
+			#if body.has_method("take_damage"):
+				#body.take_damage('rock', direction)	
+			#queue_free()
+	if not player_fired:
+		if body.name == 'Player':
+			body.take_damage('rock', direction)
+			queue_free()
 	

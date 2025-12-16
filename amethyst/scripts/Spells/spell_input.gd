@@ -55,7 +55,7 @@ func _handle_spell_input():
 		_cast_spell_2(spell_pos, spell_dir)
 
 	elif Input.is_action_just_pressed("Spell_3"):
-		_cast_spell_3()
+		_cast_spell_3(spell_pos, spell_dir)
 
 
 
@@ -65,25 +65,25 @@ func _cast_spell_1(direction: Vector2):
 		ElementManager.Element.FIRE:
 			caster.try_cast(
 				summoner.summon_in_direction,
-				[summoner.fireball_scene, origin, direction, player_fired]
+				[summoner.fireball_scene, origin, direction, player_fired, false]
 			)
 
 		ElementManager.Element.EARTH:
 			caster.try_cast(
 				summoner.summon_in_direction,
-				[summoner.rock_scene, origin, direction, player_fired]
+				[summoner.rock_scene, origin, direction, player_fired, true]
 			)
 
 		ElementManager.Element.WATER:
 			caster.try_cast(
 				summoner.summon_in_direction,
-				[summoner.water_blast_scene, origin, direction, player_fired]
+				[summoner.water_blast_scene, origin, direction, player_fired, false]
 			)
 
 		ElementManager.Element.WIND:
 			caster.try_cast(
 				summoner.summon_in_direction,
-				[summoner.wind_blast_scene, origin, direction, player_fired]
+				[summoner.wind_blast_scene, origin, direction, player_fired, false]
 			)
 
 
@@ -113,14 +113,17 @@ func _cast_spell_2(position: Vector2, direction: Vector2):
 			)
 
 
-func _cast_spell_3():
+func _cast_spell_3(_position: Vector2, direction: Vector2):
 	var origin = get_parent().global_position
 	match ElementManager.player_selected_element:
 		ElementManager.Element.FIRE:
 			pass
 
 		ElementManager.Element.EARTH:
-			pass
+			caster.try_cast(
+				summoner.summon_line,
+				[summoner.rock_scene, origin, direction, 8, 10, false]
+			)
 
 		ElementManager.Element.WATER:
 			caster.try_cast(

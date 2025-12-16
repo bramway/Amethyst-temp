@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bfwrhynoncq8x"]
+[gd_scene load_steps=30 format=3 uid="uid://bfwrhynoncq8x"]
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_87yiq"]
 [ext_resource type="Texture2D" uid="uid://bchjfe575iam" path="res://Images/Spells/fire spritesheet.png" id="2_vdm3m"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://yrv5wxbqm1m4" path="res://scenes/Spells/fire.tscn" id="8_dbg64"]
 [ext_resource type="PackedScene" uid="uid://mb1d8unxjq1y" path="res://scenes/Spells/water_blast.tscn" id="9_ogsdp"]
 [ext_resource type="PackedScene" uid="uid://d0xu72w0vbqf" path="res://scenes/Spells/wind_blast.tscn" id="10_yytcx"]
+[ext_resource type="Script" uid="uid://dd1i53ng1bj30" path="res://scripts/Spells/spell_caster.gd" id="11_x12lr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie0pa"]
 atlas = ExtResource("2_vdm3m")
@@ -344,6 +345,9 @@ water_scene = ExtResource("7_3xbcw")
 fire_scene = ExtResource("8_dbg64")
 water_blast_scene = ExtResource("9_ogsdp")
 wind_blast_scene = ExtResource("10_yytcx")
+
+[node name="spell_caster" type="Node" parent="."]
+script = ExtResource("11_x12lr")
 
 [connection signal="body_entered" from="Follow_area" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Follow_area" to="." method="_on_area_3d_body_exited"]

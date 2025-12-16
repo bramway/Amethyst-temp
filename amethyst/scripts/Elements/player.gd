@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const MOVEMENT_SPEED = 5
-const SPRINT_SPEED = 8
+var MOVEMENT_SPEED = 5
+var SPRINT_SPEED = 8
 const GRAVITY = 30
 const DASH_SPEED = 25
 var player_direction = Vector2(0.0, 1.0) # The direction in which the player last moved (stays the same when the player stands still)
@@ -20,6 +20,7 @@ var downwards_velocity: float = 0.0
 
 func _ready():
 	$AnimatedSprite3D.set_animation("player_walk_animation")
+	
 
 func _process(_delta):
 	movement(_delta)
@@ -39,6 +40,7 @@ func movement(_delta):
 	else:
 		velocity = Vector3(dir.y * MOVEMENT_SPEED, -downwards_velocity, dir.x * MOVEMENT_SPEED)
 	move_and_slide()
+	
 
 func do_gravity(delta):
 	if is_on_floor() or is_dashing:
@@ -104,3 +106,41 @@ func _on_dialogue_area_area_exited(area):
 	if area.has_meta('Dialogue'):
 		Dialogue.curr_dialogue = null
 		Dialogue.curr_dialogue_sprite = null
+		
+
+@export var fireball_damage : int
+@export var fire_damage: int
+@export var waterblast_damage: int
+@export var waterblast_movement: float
+@export var blast_speed: float
+@export var rock_damage: int
+var blast = false
+var dir_blast
+var water_speed_boost = false
+
+func take_damage(attack, direction):
+	if attack == 'Fireball':
+		Global.player_health -= fireball_damage
+	if attack == 'fire':
+		Global.player_health -= fireball_damage
+	if attack == 'windblast':
+		blast = true
+		$Blast_Timer.start()
+		dir_blast = direction
+	if attack == 'waterblast' or attack == 'water':
+		if not water_speed_boost:
+			MOVEMENT_SPEED *= waterblast_movement
+			SPRINT_SPEED *= waterblast_movement
+		Global.player_health -= waterblast_damage
+		$Water_Timer.start()
+		water_speed_boost = true
+	if attack == 'rock':
+		Global.player_health -= rock_damage
+	
+	
+
+
+func _on_water_timer_timeout() -> void:
+	water_speed_boost = false
+	MOVEMENT_SPEED = 5
+	SPRINT_SPEED = 8

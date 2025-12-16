@@ -1,9 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://cudnu08pthao2"]
+[gd_scene load_steps=25 format=3 uid="uid://cudnu08pthao2"]
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_yyctt"]
 [ext_resource type="Texture2D" uid="uid://dc2x7j322ypbj" path="res://Images/NPC's and player/water_man.png" id="2_yyctt"]
 [ext_resource type="Script" uid="uid://dx7p7adw3v52w" path="res://scripts/Spells/summon_manager.gd" id="4_5uftr"]
-[ext_resource type="PackedScene" uid="uid://blr5ejo1re2gt" path="res://scenes/Enemies/enemyhealthbar.tscn" id="4_cg5u3"]
+[ext_resource type="PackedScene" uid="uid://ccfsuyr4ys3l8" path="res://scenes/Enemies/enemyhealthbar.tscn" id="4_cg5u3"]
 [ext_resource type="PackedScene" uid="uid://mb1d8unxjq1y" path="res://scenes/Spells/water_blast.tscn" id="5_g5jcv"]
 [ext_resource type="Script" uid="uid://dd1i53ng1bj30" path="res://scripts/Spells/spell_caster.gd" id="5_jfu7w"]
 [ext_resource type="PackedScene" uid="uid://di1gun6yw5wpg" path="res://scenes/Spells/fireball.tscn" id="6_047nv"]
@@ -138,6 +138,7 @@ radius = 15.048512
 [node name="WaterMan" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Enemies"]]
 collision_layer = 3
 script = ExtResource("1_yyctt")
+max_health = 250
 animation = NodePath("Body/AnimationPlayer")
 animation_name = "rock_idle"
 stationary = true
