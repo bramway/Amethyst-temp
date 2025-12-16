@@ -13,6 +13,7 @@ extends Node
 @export var fire_scene: PackedScene
 @export var water_blast_scene: PackedScene
 @export var wind_blast_scene: PackedScene
+@export var rock_blast_scene: PackedScene
 
 
 var summon_list := []
@@ -24,11 +25,12 @@ func _ready():
 	add_child(summon_timer)
 	summon_timer.timeout.connect(_on_summon_timer_timeout)
 
-func summon_in_direction(scene: PackedScene, origin: Vector3, direction: Vector2, player_fired: bool):
+func summon_in_direction(scene: PackedScene, origin: Vector3, direction: Vector2, player_fired: bool, movable: bool):
 	var obj = scene.instantiate()
 	obj.position = origin + Vector3(direction.y, 0, direction.x) * CAST_DISTANCE
 	obj.set("direction", direction)
 	obj.set('player_fired', player_fired)
+	obj.set('movable', movable)
 	get_tree().root.add_child(obj)
 	return obj
 
@@ -50,6 +52,15 @@ func summon_circle(scene: PackedScene, origin: Vector3, amount: int, radius: flo
 		summon_list.append(obj)
 	summon_timer.start(SPAWN_TIME)
 
+func summon_line(scene: PackedScene, origin: Vector3, direction: Vector2, amount: int, length: float, movable: bool):
+	print(mm.make_line(direction, amount, length))
+	var obj = scene.instantiate()
+	obj.set('movable', movable)
+	print(direction)
+	
+	#summon_list.append(obj)
+	#summon_timer.start(SPAWN_TIME)
+	
 func _on_summon_timer_timeout():
 	if summon_list.is_empty():
 		return

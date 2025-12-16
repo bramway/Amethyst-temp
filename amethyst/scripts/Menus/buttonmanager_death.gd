@@ -1,7 +1,10 @@
 extends Control
 
-@onready var main_menu_resource = load("res://scenes/main_menu.tscn")
+@onready var main_menu_resource = load("res://scenes/Menus/main_menu.tscn")
 @onready var root = get_tree().get_root()
+@onready var level_resource = load("res://scenes/UI/viewport.tscn")
+
+
 
 
 
@@ -16,4 +19,4 @@ func _on_main_menu_pressed() -> void:
 
 
 func _on_respawn_pressed() -> void:
-	print('not implemented')
+	print('Not Implemented')

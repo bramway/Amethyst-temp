@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://btw32gt2iskv7"]
+[gd_scene load_steps=25 format=3 uid="uid://btw32gt2iskv7"]
 
 [ext_resource type="Script" uid="uid://dvmnbpnp8ragx" path="res://scripts/Enemies/enemy.gd" id="1_kjfma"]
 [ext_resource type="Texture2D" uid="uid://ct1fdhl1gukmx" path="res://Images/NPC's and player/rock_man.png" id="2_4ge31"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://yrv5wxbqm1m4" path="res://scenes/Spells/fire.tscn" id="9_w3a6u"]
 [ext_resource type="PackedScene" uid="uid://mb1d8unxjq1y" path="res://scenes/Spells/water_blast.tscn" id="10_h1bqh"]
 [ext_resource type="PackedScene" uid="uid://d0xu72w0vbqf" path="res://scenes/Spells/wind_blast.tscn" id="11_71bgr"]
+[ext_resource type="PackedScene" uid="uid://b83l2gat3amuv" path="res://scenes/Spells/rock_blast_scene.tscn" id="12_nr3eb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ds33u"]
 atlas = ExtResource("2_rf04j")
@@ -121,13 +122,13 @@ radius = 15.048512
 [node name="RockMan" type="CharacterBody3D" node_paths=PackedStringArray("animation") groups=["Enemies"]]
 collision_layer = 3
 script = ExtResource("1_kjfma")
+max_health = 250
 animation = NodePath("Head/AnimationPlayer")
 animation_name = "rock_idle"
 stationary = true
 fireball_damage = 5
 fire_damage = 5
 blast_speed = 15.0
-rock = -25
 element = 1
 
 [node name="Head" type="Sprite3D" parent="."]
@@ -198,6 +199,7 @@ water_scene = ExtResource("8_wj84h")
 fire_scene = ExtResource("9_w3a6u")
 water_blast_scene = ExtResource("10_h1bqh")
 wind_blast_scene = ExtResource("11_71bgr")
+rock_blast_scene = ExtResource("12_nr3eb")
 
 [node name="spell_caster" type="Node" parent="."]
 script = ExtResource("6_fmkla")

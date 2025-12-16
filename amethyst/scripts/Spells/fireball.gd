@@ -5,6 +5,7 @@ var despawn_timer = 0.0
 const MOVEMENT_SPEED = 9
 var direction: Vector2
 var player_fired: bool
+var movable
 
 
 # Called when the node enters the scene tree for the first time.

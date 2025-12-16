@@ -8,7 +8,7 @@ extends CharacterBody3D
 var movement_speed = 3
 var player_nearby: bool = false
 var touching: bool = false
-const max_health = 100
+@export var max_health = 100
 var health = max_health
 var blast = false
 var dir_blast 
@@ -20,9 +20,11 @@ var dir_blast
 @export var waterblast_damage: int
 @export var waterblast_movement: float
 @export var blast_speed: float
-@export var rock: int
+@export var rock_damage: int
 var water_speed_boost = false
 var mm = magic_math.new()
+var downwards_velocity: float = 0.0
+const GRAVITY = 30
 
 enum ElementType {
 	FIRE,
@@ -34,21 +36,28 @@ enum ElementType {
 @export var element: ElementType = ElementType.FIRE
 
 
-func _process(_delta):
+func _process(delta):
+	do_gravity(delta)
 	if player_nearby:
 		if not stationary:
 			var dir = (Global.player_pos-global_position).normalized()
 			velocity.x = dir.x * movement_speed
 			velocity.z = dir.z * movement_speed
-			velocity.y = -9
 			move_and_slide()
 	if blast:
 		velocity.x = dir_blast.y * blast_speed
 		velocity.z = dir_blast.x * blast_speed 
+		velocity.y = -downwards_velocity
 		move_and_slide()
 		
 		
-	
+
+func do_gravity(delta):
+	if is_on_floor():
+		downwards_velocity = 0.0
+	else:
+		downwards_velocity += delta * GRAVITY
+		
 func _ready():
 	hit_timer.timeout.connect(hit)
 	range_timer.timeout.connect(range_attack)
@@ -77,7 +86,7 @@ func take_damage(attack, direction):
 		$Water_Timer.start()
 		water_speed_boost = true
 	if attack == 'rock':
-		health -= rock
+		health -= rock_damage
 	set_health_bar()
 	if health <= 0:
 		queue_free()
@@ -93,19 +102,22 @@ func range_attack():
 		ElementType.FIRE:
 			caster.try_cast(
 				summoner.summon_in_direction,
-				[summoner.fireball_scene, global_position, direction, player_fired]
+				[summoner.fireball_scene, global_position, direction, player_fired, false]
 			)
 		ElementType.EARTH:
-			pass
+			caster.try_cast(
+				summoner.summon_in_direction,
+				[summoner.rock_blast_scene, global_position, direction, player_fired, false]
+			)
 		ElementType.WATER:
 			caster.try_cast(
 				summoner.summon_in_direction,
-				[summoner.water_blast_scene, global_position, direction, player_fired]
+				[summoner.water_blast_scene, global_position, direction, player_fired, false]
 			)
 		ElementType.WIND:
 			caster.try_cast(
 				summoner.summon_in_direction,
-				[summoner.wind_blast_scene, global_position, direction, player_fired]
+				[summoner.wind_blast_scene, global_position, direction, player_fired, false]
 			)
 
 func die():

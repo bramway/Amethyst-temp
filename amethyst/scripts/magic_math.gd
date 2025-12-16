@@ -35,3 +35,14 @@ func get_spell_direction(camera, screen_size, mouse_position):
 	spell_direction = spell_position.normalized()
 	var pos_dir = Array([spell_position, spell_direction])
 	return pos_dir 
+
+func make_line(direction, amount, length):
+	var offset = length / amount
+	var position_list = []
+	position_list.append(Vector3(0,1,0))
+	var perp = direction.rotated(PI/2)
+	for _i in range(amount):
+		var pos: Vector3
+		pos.y = 1
+		
+		
