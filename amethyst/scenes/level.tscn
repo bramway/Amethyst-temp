@@ -1,12 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://c4skm1vgy3gq6"]
+[gd_scene load_steps=16 format=3 uid="uid://cc3huqxc3wu2b"]
 
 [ext_resource type="Texture2D" uid="uid://dbfrc4s7lkh04" path="res://Images/Textures/void.png" id="1_mx8sn"]
-[ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/player.tscn" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://bb50i2do0b7qe" path="res://scenes/Objects/player.tscn" id="2_w8frs"]
 [ext_resource type="Texture2D" uid="uid://c6l3wjiv823ga" path="res://Images/NPC's and player/wizard.png" id="4_2r41h"]
 [ext_resource type="PackedScene" uid="uid://bu0btelvd2py6" path="res://scenes/Enemies/enemy.tscn" id="4_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://c4vehwl6b341n" path="res://Images/Spells/rock.png" id="5_ppgk2"]
 [ext_resource type="AudioStream" uid="uid://c4plskmabcty" path="res://Sounds/Music/Void.mp3" id="6_2r41h"]
-[ext_resource type="PackedScene" path="res://scenes/load_zone.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://bgv1t3guygty6" path="res://scenes/Objects/load_zone.tscn" id="7_klq6b"]
 [ext_resource type="Texture2D" uid="uid://mewr7aox743d" path="res://Images/Textures/water.png" id="8_b121j"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_km5ld"]

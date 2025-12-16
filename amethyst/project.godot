@@ -17,6 +17,7 @@ config/icon="uid://be1d0stoobhwt"
 
 [autoload]
 
+PauseManager="*res://scripts/pause_manager.gd"
 Global="*res://scripts/Elements/Global.gd"
 Scoreboard="*res://scripts/Scoreboard/Scoreboard.gd"
 Dialogue="*res://scripts/dialogue/dialogue_system.gd"

@@ -14,9 +14,11 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Dialogue"):
 		if Dialogue.curr_dialogue != null:
 			if Dialogue.in_dialogue:
+				get_tree().paused = false
 				self.visible = false
 				Dialogue.in_dialogue = false
 			else:
+				get_tree().paused = true
 				read(text)
 				Dialogue.in_dialogue = true
 				if Dialogue.dialogue_done:
