@@ -1,10 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://o3nccnnf2pc3"]
+[gd_scene load_steps=15 format=3 uid="uid://o3nccnnf2pc3"]
+
+[ext_resource type="Script" uid="uid://cwq6dwkq6isno" path="res://scripts/UI/element_display.gd" id="1_vb61p"]
+[ext_resource type="Texture2D" uid="uid://ct0bmjo64ai8x" path="res://Images/Crystals/crystal_particles.png" id="2_owlbh"]
+[ext_resource type="Texture2D" uid="uid://c6iyljbflmuyk" path="res://Images/Crystals/blank_crystal.png" id="3_c5elv"]
+[ext_resource type="Texture2D" uid="uid://bdkisjv0ytxpq" path="res://Images/Crystals/crystal_of_darkness.png" id="4_cketn"]
+[ext_resource type="Texture2D" uid="uid://bnxn6sgyyx0ek" path="res://Images/Crystals/crystal_of_earth.png" id="5_64obo"]
+[ext_resource type="Texture2D" uid="uid://xj0t0qjawpdr" path="res://Images/Crystals/crystal_of_fire.png" id="6_7a1qy"]
+[ext_resource type="Texture2D" uid="uid://s7mafs3takon" path="res://Images/Crystals/crystal_of_light.png" id="7_d68qh"]
+[ext_resource type="Texture2D" uid="uid://seooemyl4ud7" path="res://Images/Crystals/crystal_of_water.png" id="8_34m55"]
+[ext_resource type="Texture2D" uid="uid://8dbgygco3w6l" path="res://Images/Crystals/crystal_of_wind.png" id="9_5t1j6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
 bg_color = Color(0, 0.6357781, 0.18537351, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nac7"]
+atlas = ExtResource("2_owlbh")
+region = Rect2(0, 0, 3, 3)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_teulp"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 5.85
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 5.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_krw1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_c5elv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cketn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_64obo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7a1qy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d68qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_34m55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5t1j6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -15,11 +68,33 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -27.0
-offset_right = 2.0
+offset_left = -476.0
+offset_top = -618.0
+offset_right = -276.0
+offset_bottom = -591.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_xlq6p")
 theme_override_styles/fill = SubResource("StyleBoxFlat_nt7q6")
 show_percentage = false
+
+[node name="ElementDisplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 80.0
+offset_right = 50.0
+offset_bottom = 80.0
+script = ExtResource("1_vb61p")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ElementDisplay"]
+texture_filter = 1
+amount = 10
+texture = SubResource("AtlasTexture_4nac7")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_teulp")
+
+[node name="ElementCrystal" type="AnimatedSprite2D" parent="ElementDisplay"]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_krw1k")
